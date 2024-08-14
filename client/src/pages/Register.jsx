@@ -7,13 +7,10 @@ const Register = () => {
       <div className="min-h-[calc(100vh-134px)] py-4 px-4 sm:px-12 flex justify-center items-center max-w-[1440px] mx-auto">
         <div className="max-w-[550px] flex-none w-full bg-white border border-black/10 p-6 sm:p-10 lg:px-10 lg:py-14 rounded-2xl dark:bg-darklight dark:border-darkborder">
           <h1 className="mb-2 text-2xl font-semibold text-center dark:text-white">
-            Sign Up
+            Patient Registration
           </h1>
           <div className="flex items-center mb-7">
-            <div className="w-full h-[2px] bg-black/10 dark:bg-darkborder"></div>
-            <div className="px-5 capitalize text-muted whitespace-nowrap dark:text-darkmuted">
-              Enter Your Full Details to Sign Up!
-            </div>
+            
             <div className="w-full h-[2px] bg-black/10 dark:bg-darkborder"></div>
           </div>
           <form className="grid grid-cols-1 gap-4 sm:grid-cols-2">

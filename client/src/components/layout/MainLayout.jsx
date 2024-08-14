@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from "../layout/Sidebar";
 import Topbar from "../layout/Topbar";
+import Footer from './Footer';
 
 const MainLayout = ({ children }) => {
     
@@ -19,6 +20,7 @@ const MainLayout = ({ children }) => {
               <Topbar />
               <div className="h-[calc(100vh-60px)] relative overflow-y-auto overflow-x-hidden p-4 space-y-4 detached-content">
                 {children}
+                <Footer />
               </div>
             </div>
           </div>

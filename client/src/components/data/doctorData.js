@@ -11,4 +11,12 @@ const doctordata = [
     service: "Cardiac Rehabilitation",
     schedule: "Mon - Fri 09:00 to 17:00",
   },
+  {
+    name: "Dr. Hanna Richards",
+    department: "Pediatrics",
+    service: "GP Surgery",
+    schedule: "Mon - Fri 09:00 to 17:00",
+  },
 ];
+
+export { doctordata };

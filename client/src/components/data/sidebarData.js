@@ -10,14 +10,14 @@ const sidebarData = [
     link: "/appoinments",
   },
   {
-    id: "doctors",
-    label: "Doctors",
-    link: "/doctors",
-  },
-  {
     id: "patients",
     label: "Patients",
     link: "/patients",
+  },
+  {
+    id: "doctors",
+    label: "Doctors",
+    link: "/doctors",
   },
 ];
 
