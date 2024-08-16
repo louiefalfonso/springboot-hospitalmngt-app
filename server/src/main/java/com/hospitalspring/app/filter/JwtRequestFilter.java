@@ -32,7 +32,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        log.info("doFilterInternal(-)");
+        //log.info("doFilterInternal(-)");
 
         final String authorizationHeader = request.getHeader("Authorization");
 
@@ -48,7 +48,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
 
             if (jwtUtil.validateToken(jwtToken, username)) {
-                log.info("validateToken(-)");
+                //log.info("validateToken(-)");
                 UsernamePasswordAuthenticationToken authenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
