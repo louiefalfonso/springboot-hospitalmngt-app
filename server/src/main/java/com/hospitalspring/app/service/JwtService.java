@@ -9,6 +9,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,8 @@ public class JwtService {
 
     @Value("${jwt_expiration}")
     private long jwtExpiration;
+
+    private final Map<String, Boolean> tokenCache = new ConcurrentHashMap<>();
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -88,5 +91,12 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
+    public void invalidateToken(String token) {
+        tokenCache.put(token, false);
+    }
+
+    public boolean isValidToken(String token) {
+        return tokenCache.getOrDefault(token, false);
+    }
 
 }
