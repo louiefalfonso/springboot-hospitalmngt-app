@@ -1,4 +1,4 @@
-package com.hospitalspring.app.entity;
+package com.hospitalspring.app.dtos;
 
 public class LoginUserDto {
     private String email;

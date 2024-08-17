@@ -1,7 +1,7 @@
 package com.hospitalspring.app.service;
 
+import com.hospitalspring.app.dtos.LoginUserDto;
 import com.hospitalspring.app.dtos.RegisterUserDto;
-import com.hospitalspring.app.entity.LoginUserDto;
 import com.hospitalspring.app.entity.User;
 import com.hospitalspring.app.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;

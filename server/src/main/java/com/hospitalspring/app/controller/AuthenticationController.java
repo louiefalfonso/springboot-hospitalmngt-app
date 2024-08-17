@@ -1,13 +1,14 @@
 package com.hospitalspring.app.controller;
 
 
+import com.hospitalspring.app.dtos.LoginUserDto;
 import com.hospitalspring.app.dtos.RegisterUserDto;
-import com.hospitalspring.app.entity.LoginUserDto;
 import com.hospitalspring.app.entity.User;
 import com.hospitalspring.app.responses.LoginResponse;
 import com.hospitalspring.app.service.AuthenticationService;
 import com.hospitalspring.app.service.JwtService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,12 @@ public class AuthenticationController {
         LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime());
 
         return ResponseEntity.ok(loginResponse);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+        SecurityContextHolder.clearContext();
+        return ResponseEntity.ok("Logged out successfully");
     }
 
 

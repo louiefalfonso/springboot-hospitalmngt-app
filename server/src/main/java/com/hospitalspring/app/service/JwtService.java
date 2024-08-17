@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import static io.jsonwebtoken.Jwts.*;
-
 
 @Service
 public class JwtService {
@@ -89,4 +87,6 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
+
 }
