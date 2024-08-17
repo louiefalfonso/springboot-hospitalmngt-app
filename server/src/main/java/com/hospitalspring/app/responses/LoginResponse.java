@@ -27,7 +27,7 @@ public class LoginResponse {
     public String toString() {
         return "LoginResponse{" +
                 "token='" + token + '\'' +
-                ", expiresIn=" + expiresIn +
+                ",expiresIn=" + expiresIn +
                 '}';
     }
 }
