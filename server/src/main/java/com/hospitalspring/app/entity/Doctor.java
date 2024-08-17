@@ -35,5 +35,26 @@ public class Doctor {
     @Column(name = "schedule")
     private String schedule;
 
+    public Doctor(Object id, Object firstName, Object lastName, Object email, Object contactNumber, Object department, Object specialization, Object schedule) {
+    }
+
+    public void setFirstName(Object firstName) {
+    }
+
+    public void setLastName(Object lastName) {
+    }
+
+    public void setEmail(Object email) {
+    }
+
+    public void setDepartment(Object department) {
+    }
+
+    public void setContactNumber(Object contactNumber) {
+    }
+
+    public void setSchedule(Object schedule) {
+    }
+
 
 }
