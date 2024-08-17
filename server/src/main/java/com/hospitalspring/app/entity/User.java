@@ -1,7 +1,5 @@
 package com.hospitalspring.app.entity;
 
-
-import com.hospitalspring.app.dtos.RegisterUserDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
