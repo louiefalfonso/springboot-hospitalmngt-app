@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from "react";
+import Modal from "../layout/Modal";
 import { doctordata } from "../data/doctorData.js";
+import AddDoctor from "./AddDoctor.jsx";
 
 const Doctors = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
   return (
     <>
       <div className="flex flex-col gap-4 min-h-[calc(100vh-212px)]">
@@ -11,10 +17,21 @@ const Doctors = () => {
               <h2 className="font-bold">Specialist Details</h2>
               <button
                 type="button"
+                onClick={toggleModal}
                 className="btn flex items-center gap-1.5 bg-purple border border-purple rounded-md text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]"
               >
                 Add Specialist
               </button>
+              <Modal
+                isOpen={isModalOpen}
+                toggleModal={toggleModal}
+                title="Add New Doctor"
+                divClass="flex items-start justify-center min-h-screen px-4"
+                content={<AddDoctor/>}
+                onDiscard={toggleModal}
+                sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+                spaceClass="p-5 space-y-4"
+              />
             </div>
 
             <div className="overflow-auto">

@@ -15,7 +15,7 @@ import java.util.List;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/doctors")
+@RequestMapping("/doctors")
 public class DoctorController {
 
     private DoctorService doctorService;
@@ -54,7 +54,7 @@ public class DoctorController {
         updateDoctor.setFirstName(doctorDetails.getFirstName());
         updateDoctor.setLastName(doctorDetails.getLastName());
         updateDoctor.setEmail(doctorDetails.getEmail());
-        updateDoctor.setContactNumber(doctorDetails.getContactNumber());
+        updateDoctor.setNumber(doctorDetails.getNumber());
         updateDoctor.setDepartment(doctorDetails.getDepartment());
         updateDoctor.setSpecialization(doctorDetails.getSpecialization());
         updateDoctor.setSchedule(doctorDetails.getSchedule());
@@ -63,6 +63,8 @@ public class DoctorController {
         return ResponseEntity.ok(updateDoctor);
     }
 
+    //DELETE Doctor REST API
+    @DeleteMapping("{id}")
     public ResponseEntity<String> deleteDoctor(@PathVariable("id")Long doctorId){
         doctorService.deleteDoctor(doctorId);
         return ResponseEntity.ok("Doctor Deleted Successfully");

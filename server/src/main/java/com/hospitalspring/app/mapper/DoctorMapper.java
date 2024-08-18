@@ -12,7 +12,7 @@ public class DoctorMapper {
                 doctor.getFirstName(),
                 doctor.getLastName(),
                 doctor.getEmail(),
-                doctor.getContactNumber(),
+                doctor.getNumber(),
                 doctor.getDepartment(),
                 doctor.getSpecialization(),
                 doctor.getSchedule()
@@ -26,7 +26,7 @@ public class DoctorMapper {
                 doctorDto.getFirstName(),
                 doctorDto.getLastName(),
                 doctorDto.getEmail(),
-                doctorDto.getContactNumber(),
+                doctorDto.getNumber(),
                 doctorDto.getDepartment(),
                 doctorDto.getSpecialization(),
                 doctorDto.getSchedule()

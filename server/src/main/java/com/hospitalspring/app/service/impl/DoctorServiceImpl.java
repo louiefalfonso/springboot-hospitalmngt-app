@@ -52,7 +52,7 @@ public class DoctorServiceImpl implements DoctorService {
         doctor.setFirstName(updateDoctor.getFirstName());
         doctor.setLastName(updateDoctor.getLastName());
         doctor.setEmail(updateDoctor.getEmail());
-        doctor.setContactNumber(updateDoctor.getContactNumber());
+        doctor.setNumber(updateDoctor.getNumber());
         doctor.setDepartment(updateDoctor.getDepartment());
         doctor.setSchedule(updateDoctor.getSchedule());
 
