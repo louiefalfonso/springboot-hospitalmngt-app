@@ -17,22 +17,21 @@ public class DoctorDto {
     private String specialization;
     private String schedule;
 
+    public DoctorDto(Object id, Object firstName, Object lastName, Object email, Object contactNumber, Object department, Object specialization, Object schedule) {
+    }
+
     public Object getFirstName() {
         return firstName;
     }
-
     public Object getLastName() {
         return lastName;
     }
-
     public Object getEmail() {
         return  email;
     }
-
     public Object getContactNumber() {
         return  contactnumber;
     }
-
     public Object getDepartment() {
         return  department;
     }
@@ -42,8 +41,6 @@ public class DoctorDto {
     public Object getSchedule() {
         return schedule;
     }
-
-
     public Object getId() {
         return id;
     }

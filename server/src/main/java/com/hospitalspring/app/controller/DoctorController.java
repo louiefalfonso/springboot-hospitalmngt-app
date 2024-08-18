@@ -23,14 +23,14 @@ public class DoctorController {
     @Autowired
     private DoctorRepository doctorRepository;
 
-    //POST New Doctor
+    //POST New Doctor REST API
     @PostMapping
     public ResponseEntity<DoctorDto> createDoctor(@RequestBody DoctorDto doctorDto){
         DoctorDto savedDoctor = doctorService.createDoctor(doctorDto);
         return new ResponseEntity<>(savedDoctor, HttpStatus.CREATED);
     }
 
-    //GET Doctor By ID
+    //GET Doctor By ID REST API
     @GetMapping("{id}")
     public ResponseEntity<Doctor> getDoctorById(@PathVariable long id){
         Doctor doctor = doctorRepository.findAllById(id)
@@ -38,14 +38,37 @@ public class DoctorController {
         return  ResponseEntity.ok(doctor);
     }
 
-    //GET All Doctors
+    //GET All Doctors REST API
     @GetMapping
     public ResponseEntity<List<DoctorDto>> getAllDoctors(){
         List<DoctorDto> doctor = doctorService.getAllDoctors();
         return ResponseEntity.ok(doctor);
     }
 
+    //UPDATE Doctor REST API
+    @PutMapping("{id}")
+    public ResponseEntity<Doctor> updateDoctor(@PathVariable ("id")  long id,
+                                               @RequestBody Doctor doctorDetails){
+        Doctor updateDoctor = doctorRepository.findById(id)
+                .orElseThrow( ()-> new RuntimeException("Doctor does not exist with id: " + id));
+        updateDoctor.setFirstName(doctorDetails.getFirstName());
+        updateDoctor.setLastName(doctorDetails.getLastName());
+        updateDoctor.setEmail(doctorDetails.getEmail());
+        updateDoctor.setContactNumber(doctorDetails.getContactNumber());
+        updateDoctor.setDepartment(doctorDetails.getDepartment());
+        updateDoctor.setSpecialization(doctorDetails.getSpecialization());
+        updateDoctor.setSchedule(doctorDetails.getSchedule());
+
+        doctorRepository.save(updateDoctor);
+        return ResponseEntity.ok(updateDoctor);
+    }
+
+    public ResponseEntity<String> deleteDoctor(@PathVariable("id")Long doctorId){
+        doctorService.deleteDoctor(doctorId);
+        return ResponseEntity.ok("Doctor Deleted Successfully");
+    }
 }
+
 
 
 

@@ -12,7 +12,7 @@ public class DoctorMapper {
                 doctor.getFirstName(),
                 doctor.getLastName(),
                 doctor.getEmail(),
-                doctor.getContactnumber(),
+                doctor.getContactNumber(),
                 doctor.getDepartment(),
                 doctor.getSpecialization(),
                 doctor.getSchedule()

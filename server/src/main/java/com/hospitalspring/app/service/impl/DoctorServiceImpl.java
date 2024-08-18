@@ -60,7 +60,13 @@ public class DoctorServiceImpl implements DoctorService {
         return  modelMapper.map(updateDoctorObj, DoctorDto.class);
     }
 
-
-
-
+    // REST API - Delete Doctor
+    @Override
+    public void deleteDoctor(Long doctorId) {
+        Doctor doctor = doctorRepository.findAllById(doctorId).orElseThrow(
+                ()-> new RuntimeException("Doctor doesn't exist with given id:" + doctorId)
+        );
+        doctorRepository.deleteById(doctorId);
+    }
 }
+

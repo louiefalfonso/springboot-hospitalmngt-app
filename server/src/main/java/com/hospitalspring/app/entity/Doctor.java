@@ -53,8 +53,42 @@ public class Doctor {
     public void setContactNumber(Object contactNumber) {
     }
 
+    public void  setSpecialization(Object specialization){
+    }
+
     public void setSchedule(Object schedule) {
     }
 
 
+    public Object getFirstName() {
+        return  firstName;
+    }
+
+    public Object getLastName() {
+        return lastName;
+    }
+
+    public Object getEmail() {
+        return email;
+    }
+
+    public Object getContactNumber() {
+        return contactnumber;
+    }
+
+    public Object getDepartment() {
+        return department;
+    }
+
+    public Object getSpecialization() {
+        return specialization;
+    }
+
+    public Object getSchedule() {
+        return schedule;
+    }
+
+    public Object getId() {
+        return id;
+    }
 }

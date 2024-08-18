@@ -12,7 +12,9 @@ public interface DoctorService {
 
     List<DoctorDto> getAllDoctors();
 
-    DoctorDto updateDoctor (Long doctorId, DoctorDto updateDoctor);
+    DoctorDto updateDoctor(Long doctorId, DoctorDto updateDoctor);
+
+    void deleteDoctor(Long doctorId);
 }
 
 
