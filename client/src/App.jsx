@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import AppoinmentsPage from "./pages/AppoinmentsPage";
 import DoctorsPage from "./pages/DoctorsPage";
 import PatientsPage from "./pages/PatientsPage";
+import DoctorPage from "./pages/doctors/[...id]";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/appoinments" element={<AppoinmentsPage />} />
           <Route path="/doctors" element={<DoctorsPage />} />
-          <Route path="/patients" element={<PatientsPage/>} />
+          <Route path="/patients" element={<PatientsPage />} />
+          <Route path="/doctors/:id" element={<DoctorPage/>} />
         </Routes>
       </main>
     </>

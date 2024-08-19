@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { sidebarData } from "../data/sidebarData";
+import logo from "../../assets/st-lukes-logo-header.svg";
 
 const Sidebar = () => {
     const [activeMenu, setActiveMenu] = useState(null);
@@ -15,9 +16,13 @@ const Sidebar = () => {
     <>
       <nav className="sidebar fixed z-[9999] flex-none w-[240px] ltr:border-r rtl:border-l dark:bg-darkborder border-black/10 transition-all duration-300 overflow-hidden">
         <div className="h-full bg-white dark:bg-darklight">
-          <div className="p-4">
+          <div className="p-8">
             <Link to="index" className="w-full main-logo">
-            
+              <img
+                src={logo}
+                className="mx-auto dark-logo logo dark:hidden"
+                alt="logo"
+              />
             </Link>
           </div>
           <div className="h-[calc(100vh-60px)]  overflow-y-auto overflow-x-hidden px-5 pb-4 space-y-16 detached-menu">

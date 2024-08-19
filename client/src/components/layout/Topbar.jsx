@@ -31,7 +31,6 @@ const Topbar = () => {
       }
     };
 
-
   return (
     <>
       <div className="bg-white dark:bg-darklight dark:border-darkborder flex gap-4 lg:z-10 items-center justify-between px-4 h-[60px] border-b border-black/10 detached-topbar relative">
@@ -67,7 +66,7 @@ const Topbar = () => {
         <div className="flex items-center gap-4">
           <Link
             onClick={handleLogout}
-            className="flex items-center gap-2 text-black dark:text-white"
+            className="flex items-center gap-2 text-red-600 dark:text-white"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

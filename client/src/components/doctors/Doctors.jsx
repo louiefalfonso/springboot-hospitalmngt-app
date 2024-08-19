@@ -5,6 +5,7 @@ import AddDoctor from "./AddDoctor.jsx";
 import DoctorService from "../../services/DoctorService.js";
 import { createPortal } from "react-dom";
 import { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -32,23 +33,22 @@ const Doctors = () => {
         <div className="grid grid-cols-1 gap-4">
           <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
             <div className="flex items-center justify-between">
-              <h2 className="font-bold">Specialist Details</h2>
+              <h2 className="font-bold">Full Doctors List</h2>
               <button
                 type="button"
                 onClick={toggleModal}
-                className="btn flex items-center gap-1.5 bg-purple border border-purple rounded-md text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]"
+                className="btn flex items-center gap-1.5 bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-green/[0.85] hover:border-green/[0.85]"
               >
-                Add Specialist
+                + Add Specialist
               </button>
             </div>
             <div className="overflow-auto">
-              <table className="min-w-[640px] w-full mt-4">
+              <table className="min-w-[640px] w-full mt-4 table-striped">
                 <thead>
                   <tr className="ltr:text-left rtl:text-right">
                     <th>Specialist Name</th>
-                    <th>Email</th>
                     <th>Department</th>
-                    <th>Service</th>
+                    <th>Specialization</th>
                     <th>Schedule</th>
                     <th></th>
                   </tr>
@@ -57,12 +57,21 @@ const Doctors = () => {
                   {doctors.map((doctor, index) => (
                     <tr className="text-muted" key={doctor.id || index}>
                       <td>
-                        Dr.{doctor.firstName} {doctor.lastName}
+                        Dr. {doctor.firstName} {doctor.lastName}
                       </td>
-                      <td>{doctor.email}</td>
                       <td>{doctor.department}</td>
                       <td>{doctor.specialization}</td>
                       <td>{doctor.schedule}</td>
+                      <td>
+                        <Link to={`/doctors/${doctor.id}`}>
+                          <button
+                            type="button"
+                            className="btn py-1 px-3.5 text-xs bg-info border border-info border-info rounded-md text-white transition-all duration-300 hover:bg-info/[0.85] hover:border-info/[0.85]"
+                          >
+                            View
+                          </button>
+                        </Link>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -84,7 +93,7 @@ const Doctors = () => {
           />,
           document.body
         )}
-      <Toaster />
+      <Toaster duration={12000} />
     </>
   );
 };
