@@ -17,4 +17,5 @@ public class HospitalappApplication {
 		SpringApplication.run(HospitalappApplication.class, args);
 	}
 
+
 }

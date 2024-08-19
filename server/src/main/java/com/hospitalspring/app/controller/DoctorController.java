@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @AllArgsConstructor
 @RestController
-@RequestMapping("/doctors")
+@RequestMapping("/api/doctors")
 public class DoctorController {
 
     private DoctorService doctorService;
@@ -31,12 +32,14 @@ public class DoctorController {
     }
 
     //GET Doctor By ID REST API
+
     @GetMapping("{id}")
     public ResponseEntity<Doctor> getDoctorById(@PathVariable long id){
         Doctor doctor = doctorRepository.findAllById(id)
                 .orElseThrow(()-> new RuntimeException("Doctor does not exist with Id:" + id));
         return  ResponseEntity.ok(doctor);
     }
+
 
     //GET All Doctors REST API
     @GetMapping
