@@ -39,7 +39,7 @@ const Doctors = () => {
                 onClick={toggleModal}
                 className="btn flex items-center gap-1.5 bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-green/[0.85] hover:border-green/[0.85]"
               >
-                + Add Specialist
+                + Add New Doctor
               </button>
             </div>
             <div className="overflow-auto">
@@ -87,7 +87,7 @@ const Doctors = () => {
             toggleModal={toggleModal}
             title="Add New Doctor"
             divClass="flex items-start justify-center min-h-screen px-4"
-            content={<AddDoctor toggleModal={toggleModal} />}
+            content={<AddDoctor toggleModal={toggleModal}/>}
             sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
             spaceClass="p-5 space-y-4"
           />,

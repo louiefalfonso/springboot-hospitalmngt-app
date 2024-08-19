@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DoctorService from "../../services/DoctorService.js";
 import toast, { Toaster } from "react-hot-toast";
 
-const AddDoctor = () => {
+const UpdateDoctor = () => {
   const navite = useNavigate();
   const params = useParams();
   const { id } = params;
@@ -17,16 +17,16 @@ const AddDoctor = () => {
   const [schedule, setSchedule] = useState("");
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
-   
-    const newDoctor = {
+
+    const currentDoctor = {
       firstName,
       lastName,
       email,
@@ -36,10 +36,10 @@ const AddDoctor = () => {
       schedule,
     };
 
-    DoctorService.addNewDoctor(newDoctor)
+    DoctorService.updateCurrentDoctor(currentDoctor, id)
       .then(() => {
         navite("/doctors");
-        toast.success("Doctor added successfully!");
+        toast.success("Udpate Details Complete!");
         setIsModalOpen(false);
         window.location.reload();
       })
@@ -49,30 +49,28 @@ const AddDoctor = () => {
       });
   };
 
+
   useEffect(() => {
-    if (id) {
-      const fetchNewDoctor = async () => {
-        try {
-          const response = await DoctorService.getDoctorById(id);
-          const newDoctor = response.data;
-
-          setFirstName(newDoctor.firstName);
-          setLastName(newDoctor.lastName);
-          setEmail(newDoctor.email);
-          setNumber(newDoctor.number);
-          setDepartment(newDoctor.department);
-          setSpecialization(newDoctor.specialization);
-          setSchedule(newDoctor.schedule);
-
-        } catch (error) {
-          setError(error.message);
-          console.error(error);
-        }
-      };
-      fetchNewDoctor();
-    }
+    const fetchCurrentDoctor = async () => {
+      try {
+        const response = await DoctorService.getDoctorById(id);
+        const update = response.data;
+        setFirstName(update.firstName);
+        setLastName(update.lastName);
+        setEmail(update.email);
+        setNumber(update.number);
+        setDepartment(update.department);
+        setSpecialization(update.specialization);
+        setSchedule(update.schedule);
+        
+      } catch (error) {
+        setError(error.message);
+        console.error(error);
+      }
+    };
+    fetchCurrentDoctor();
   }, [id]);
-
+  
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
@@ -206,7 +204,7 @@ const AddDoctor = () => {
                 type="submit"
                 className="btn w-full py-2 px-4 text-lg bg-purple border border-purple border-purple rounded-md text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]"
               >
-                Add New Doctor
+                Update Doctor Details
               </button>
             </div>
           </form>
@@ -217,4 +215,4 @@ const AddDoctor = () => {
   );
 };
 
-export default AddDoctor;
+export default UpdateDoctor;

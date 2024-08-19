@@ -1390,7 +1390,7 @@ button:focus-visible {
 
 .sidebar .nav-item>a:hover {
     --tw-text-opacity: 1;
-    color: rgb(106 105 245 / var(--tw-text-opacity));
+    color: rgb(0 158 247 / var(--tw-bg-opacity));
 }
 
 :is(.dark .sidebar .nav-item > a) {
@@ -1404,7 +1404,7 @@ button:focus-visible {
 
 .sidebar .nav-item>a.active {
     --tw-text-opacity: 1;
-    color: rgb(0 158 247 / var(--tw-bg-opacity))
+    color: rgb(0 158 247 / var(--tw-bg-opacity));
 }
 
 .sidebar ul.sub-menu li a {

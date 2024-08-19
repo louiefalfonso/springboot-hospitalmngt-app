@@ -5,7 +5,7 @@ import com.hospitalspring.app.entity.Doctor;
 
 public class DoctorMapper {
 
-    // Convert Student JPA Entity to DTO
+    // Convert Doctor JPA Entity to DTO
     public static DoctorDto mapToDoctorDto(Doctor doctor){
         return new DoctorDto(
                 doctor.getId(),
@@ -19,7 +19,7 @@ public class DoctorMapper {
         );
     }
 
-    // Convert Student DTO to JPA Entity
+    // Convert Doctor DTO to JPA Entity
     public static Doctor mapToDoctor( DoctorDto doctorDto){
         return  new Doctor(
                 doctorDto.getId(),

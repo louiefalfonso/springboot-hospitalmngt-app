@@ -14,7 +14,14 @@ const DoctorService = {
   getDoctorById(id) {
     return axios.get(`${API_BASE_URL}/${id}`);
   },
-  
+
+  updateCurrentDoctor(currentDoctor, id) {
+    return axios.put(`${API_BASE_URL}/${id}`, currentDoctor);
+  },
+
+  deleteDoctor(id) {
+    return axios.delete(`${API_BASE_URL}/${id}`);
+  },
 };
 
 export default DoctorService;
