@@ -4,12 +4,18 @@ const Modal = ({
   isOpen,
   title,
   content,
-  onDiscard,
   toggleModal,
   divClass,
   sizeClass,
   spaceClass,
 }) => {
+  const handleOuterClick = (e) => {
+    if (e.target.classList.contains(divClass) && !e.target.closest("form")) {
+      toggleModal();
+    }
+  };
+
+  
   return (
     <React.Fragment>
       <div
@@ -46,22 +52,6 @@ const Modal = ({
             </div>
             <div className={spaceClass}>
               <div className="text-black dark:text-muted">{content}</div>
-              <div className="flex items-center justify-end gap-4">
-                <button
-                  type="button"
-                  className="transition-all duration-300 border rounded-md btn text-danger border-danger hover:bg-danger hover:text-white"
-                  onClick={onDiscard}
-                >
-                  Discard
-                </button>
-                <button
-                  type="button"
-                  className="transition-all duration-300 border rounded-md btn text-purple border-purple hover:bg-purple hover:text-white"
-                  //   onClick={onClose}
-                >
-                  Save
-                </button>
-              </div>
             </div>
           </div>
         </div>

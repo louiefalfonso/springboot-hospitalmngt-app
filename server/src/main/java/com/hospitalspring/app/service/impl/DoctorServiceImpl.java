@@ -35,6 +35,9 @@ public class DoctorServiceImpl implements DoctorService {
         return modelMapper.map(doctor, DoctorDto.class);
     }
 
+
+
+
     // REST API - Get All Doctors
     @Override
     public List<DoctorDto> getAllDoctors(){

@@ -1,14 +1,15 @@
 
 import React, { useState, useEffect } from "react";
 import Modal from "../layout/Modal";
-import { doctordata } from "../data/doctorData.js";
 import AddDoctor from "./AddDoctor.jsx";
 import DoctorService from "../../services/DoctorService.js";
+import { createPortal } from "react-dom";
+import { Toaster } from "react-hot-toast";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -39,18 +40,7 @@ const Doctors = () => {
               >
                 Add Specialist
               </button>
-              <Modal
-                isOpen={isModalOpen}
-                toggleModal={toggleModal}
-                title="Add New Doctor"
-                divClass="flex items-start justify-center min-h-screen px-4"
-                content={<AddDoctor />}
-                onDiscard={toggleModal}
-                sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
-                spaceClass="p-5 space-y-4"
-              />
             </div>
-
             <div className="overflow-auto">
               <table className="min-w-[640px] w-full mt-4">
                 <thead>
@@ -81,6 +71,20 @@ const Doctors = () => {
           </div>
         </div>
       </div>
+      {isModalOpen &&
+        createPortal(
+          <Modal
+            isOpen={isModalOpen}
+            toggleModal={toggleModal}
+            title="Add New Doctor"
+            divClass="flex items-start justify-center min-h-screen px-4"
+            content={<AddDoctor toggleModal={toggleModal} />}
+            sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
+            spaceClass="p-5 space-y-4"
+          />,
+          document.body
+        )}
+      <Toaster />
     </>
   );
 };

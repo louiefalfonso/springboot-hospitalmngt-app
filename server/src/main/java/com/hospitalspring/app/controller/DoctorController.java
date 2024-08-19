@@ -32,9 +32,8 @@ public class DoctorController {
     }
 
     //GET Doctor By ID REST API
-
     @GetMapping("{id}")
-    public ResponseEntity<Doctor> getDoctorById(@PathVariable long id){
+    public ResponseEntity<Doctor> getDoctorById(@PathVariable("id") long id){
         Doctor doctor = doctorRepository.findAllById(id)
                 .orElseThrow(()-> new RuntimeException("Doctor does not exist with Id:" + id));
         return  ResponseEntity.ok(doctor);
