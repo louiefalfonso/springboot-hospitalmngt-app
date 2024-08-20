@@ -42,9 +42,29 @@ public class AppointmentServiceImpl implements AppointmentService {
         return modelMapper.map(appointment, AppointmentDto.class);
     }
 
+    // REST API - Delete Appointment
     @Override
     public void deleteAppointment(Long appointmentId) {
-
+        appointmentRepository.findAllById(appointmentId)
+                .orElseThrow(() -> new RuntimeException("Appointment doesn't exist with given id:" + appointmentId));
+        appointmentRepository.deleteById(appointmentId);
     }
+
+    /*
+    // REST API - Update Appointment
+    @Override
+    public AppointmentDto updateAppointment(Long appointmentId, AppointmentDto updateAppointment) {
+        Appointment appointment = appointmentRepository.findAllById(appointmentId).orElseThrow(
+                ()-> new RuntimeException("Appointment doesn't exist with a given Id:" + appointmentId));
+
+        appointment.setDate(updateAppointment.getDate());
+        appointment.setTime(updateAppointment.getTime());
+        appointment.setStatus(updateAppointment.getStatus());
+        appointment.setComments(updateAppointment.getComments());
+        appointment.setDoctor(updateAppointment.getDoctor());
+
+        Appointment updateAppointmentObj = appointmentRepository.save(appointment);
+        return modelMapper.map(updateAppointmentObj, AppointmentDto.class);
+    }*/
 
 }

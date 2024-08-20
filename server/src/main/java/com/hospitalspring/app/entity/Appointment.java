@@ -1,6 +1,7 @@
 package com.hospitalspring.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.hospitalspring.app.dtos.DoctorDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,6 +38,7 @@ public class Appointment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", nullable = true)
     private Doctor doctor;
+
 
 }
 
