@@ -12,7 +12,10 @@ public class AppointmentMapper {
                 appointment.getDoctor().getFirstName(),
                 appointment.getDoctor().getLastName(),
                 appointment.getDoctor().getSpecialization(),
-                appointment.getDoctor().getDepartment()
+                appointment.getDoctor().getDepartment(),
+                appointment.getDoctor().getEmail(),
+                appointment.getDoctor().getNumber(),
+                appointment.getDoctor().getSchedule()
         );
 
         return new AppointmentDto(

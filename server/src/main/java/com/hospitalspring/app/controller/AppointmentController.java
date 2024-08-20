@@ -1,9 +1,8 @@
 package com.hospitalspring.app.controller;
 
 import com.hospitalspring.app.dtos.AppointmentDto;
-import com.hospitalspring.app.entity.Doctor;
+import com.hospitalspring.app.entity.Appointment;
 import com.hospitalspring.app.repository.AppointmentRepository;
-import com.hospitalspring.app.repository.DoctorRepository;
 import com.hospitalspring.app.service.AppointmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,38 +18,30 @@ import java.util.List;
 @RequestMapping("/api/appointments")
 public class AppointmentController {
 
+    @Autowired
     private AppointmentRepository appointmentRepository;
     private AppointmentService appointmentService;
-    private DoctorRepository doctorRepository;
 
     //POST New Appointment REST API
     @PostMapping
     public ResponseEntity<AppointmentDto> createAppointment(@RequestBody AppointmentDto appointmentDto){
         AppointmentDto savedAppointment = appointmentService.createAppointment(appointmentDto);
-        doctorRepository.findAllById(savedAppointment.getDoctor().getId())
-                .orElseThrow(() -> new RuntimeException("Doctor does not exist with Id:" + savedAppointment.getDoctor().getId()));
         return new ResponseEntity<>(savedAppointment, HttpStatus.CREATED);
     }
     //GET All Appointment REST API
-
-    /*
-    //POST New Appointment REST API
-        @PostMapping
-        public ResponseEntity<AppointmentDto> createAppointment(@RequestBody AppointmentDto appointmentDto){
-            AppointmentDto savedAppointment = appointmentService.createAppointment(appointmentDto);
-            Doctor doctor = doctorRepository.findAllById(savedAppointment.getDoctor().getId())
-                    .orElseThrow(()-> new RuntimeException("Doctor does not exist with Id:" + savedAppointment.getDoctor().getId()));
-            savedAppointment.setDoctor(modelMapper.map(doctor, DoctorDto.class));
-            return new ResponseEntity<>(savedAppointment, HttpStatus.CREATED);
-        }
-
-
-    //GET All Doctors REST API
     @GetMapping
-    public ResponseEntity<List<DoctorDto>> getAllDoctors(){
-        List<DoctorDto> doctor = doctorService.getAllDoctors();
-        return ResponseEntity.ok(doctor);
+    public  ResponseEntity<List<AppointmentDto>> getAllAppointments(){
+        List<AppointmentDto> appointment = appointmentService.getAllAppointments();
+        return ResponseEntity.ok(appointment);
     }
-     */
+
+    //GET Appointment By Id REST API
+    @GetMapping("{id}")
+    public ResponseEntity<Appointment> getAppointmentById(@PathVariable("id") long id){
+        Appointment appointment = appointmentRepository.findAllById(id)
+                .orElseThrow(()-> new RuntimeException("Appointment does not exist with Id:" + id));
+        return ResponseEntity.ok(appointment);
+    }
+
 
 }

@@ -17,13 +17,17 @@ public class DoctorDto {
     private String specialization;
     private String schedule;
 
-    public DoctorDto(Long id, String firstName, String lastName, String specialization, String department) {
+    public DoctorDto(Long id, String firstName, String lastName, String specialization, String department, String number, String schedule) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialization = specialization;
         this.department = department;
+        this.number = number;
+        this.schedule = schedule;
     }
+
+
 
 
 }

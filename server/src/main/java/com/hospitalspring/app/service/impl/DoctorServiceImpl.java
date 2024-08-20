@@ -36,8 +36,6 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
 
-
-
     // REST API - Get All Doctors
     @Override
     public List<DoctorDto> getAllDoctors(){

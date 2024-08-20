@@ -27,4 +27,6 @@ public class AppointmentDto {
     public DoctorDto getDoctor() {
         return doctor;
     }
+
+
 }
