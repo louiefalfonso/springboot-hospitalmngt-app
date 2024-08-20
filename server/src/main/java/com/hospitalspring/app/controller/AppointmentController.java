@@ -40,7 +40,8 @@ public class AppointmentController {
     //GET Appointment By Id REST API
     @GetMapping("{id}")
     public ResponseEntity<AppointmentDto> getAppointmentById(@PathVariable("id") long id){
-        Appointment appointment = appointmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Appointment does not exist with Id:" + id));
+        Appointment appointment = appointmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Appointment does not exist with Id:" + id));
         AppointmentDto appointmentDto = modelMapper.map(appointment, AppointmentDto.class);
         return ResponseEntity.ok(appointmentDto);
     }
@@ -52,12 +53,11 @@ public class AppointmentController {
         return ResponseEntity.ok("Appointment Deleted Successfully");
     }
 
-    /*
     //UPDATE Doctor REST API
     @PutMapping("{id}")
-    public ResponseEntity<Appointment> updateAppoinment( @PathVariable ("id") long id,
-                                                         @RequestBody Appointment appointmentDetails){
-        Appointment updateAppointment = appointmentRepository.findAllById(id)
+    public ResponseEntity<AppointmentDto> updateAppoinment(@PathVariable ("id") long id,
+                                                           @RequestBody Appointment appointmentDetails){
+        Appointment updateAppointment = appointmentRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Appointment does not exist with id:" + id));
 
         updateAppointment.setDate(appointmentDetails.getDate());
@@ -67,11 +67,10 @@ public class AppointmentController {
         updateAppointment.setDoctor(updateAppointment.getDoctor());
 
         appointmentRepository.save(updateAppointment);
-        return ResponseEntity.ok(updateAppointment);
+        AppointmentDto updatedAppointmentDto = modelMapper.map(updateAppointment, AppointmentDto.class);
 
+        return ResponseEntity.ok(updatedAppointmentDto);
     }
-
-     */
 
 
 }

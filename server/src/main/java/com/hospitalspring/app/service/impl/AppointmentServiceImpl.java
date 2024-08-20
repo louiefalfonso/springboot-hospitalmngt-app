@@ -7,6 +7,7 @@ import com.hospitalspring.app.service.AppointmentService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import com.hospitalspring.app.entity.Doctor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,21 +51,23 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointmentRepository.deleteById(appointmentId);
     }
 
-    /*
     // REST API - Update Appointment
     @Override
     public AppointmentDto updateAppointment(Long appointmentId, AppointmentDto updateAppointment) {
-        Appointment appointment = appointmentRepository.findAllById(appointmentId).orElseThrow(
-                ()-> new RuntimeException("Appointment doesn't exist with a given Id:" + appointmentId));
+        Appointment appointment = appointmentRepository.findAllById(appointmentId)
+                .orElseThrow(() -> new RuntimeException("Appointment doesn't exist with a given Id:" + appointmentId));
 
         appointment.setDate(updateAppointment.getDate());
         appointment.setTime(updateAppointment.getTime());
         appointment.setStatus(updateAppointment.getStatus());
         appointment.setComments(updateAppointment.getComments());
-        appointment.setDoctor(updateAppointment.getDoctor());
+        appointment.setDoctor(modelMapper.map(updateAppointment.getDoctor(),Doctor.class));
 
-        Appointment updateAppointmentObj = appointmentRepository.save(appointment);
-        return modelMapper.map(updateAppointmentObj, AppointmentDto.class);
-    }*/
+        Appointment updatedAppointmentObj = appointmentRepository.save(appointment);
+        return modelMapper.map(updatedAppointmentObj, AppointmentDto.class);
+    }
+
+
+
 
 }
