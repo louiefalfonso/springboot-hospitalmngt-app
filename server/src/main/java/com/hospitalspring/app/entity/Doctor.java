@@ -35,4 +35,8 @@ public class Doctor {
     @Column(name = "schedule")
     private String schedule;
 
+    public Doctor(Long id) {
+        this.id = id;
+    }
+
 }

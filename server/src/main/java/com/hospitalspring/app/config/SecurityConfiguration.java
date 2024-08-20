@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -34,21 +35,32 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         AuthenticationEntryPoint authenticationEntryPoint = null;
         http.csrf(AbstractHttpConfigurer::disable)
+                //authorize.anyRequest().authenticated()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                                //.requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/appointments/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/appointments").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/api/**").permitAll()
                                 .anyRequest().authenticated()
+
+
+                        /*
+                        .requestMatchers(HttpMethod.GET, "/api/appointments/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/appointments").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .anyRequest().authenticated()
+                         */
 
                 ).exceptionHandling( exception -> exception
                         .authenticationEntryPoint(null)
                 ).sessionManagement( session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
-
         return http.build();
     }
+
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {

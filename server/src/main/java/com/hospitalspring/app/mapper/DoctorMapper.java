@@ -21,7 +21,7 @@ public class DoctorMapper {
 
     // Convert Doctor DTO to JPA Entity
     public static Doctor mapToDoctor( DoctorDto doctorDto){
-        return  new Doctor(
+        return new Doctor(
                 doctorDto.getId(),
                 doctorDto.getFirstName(),
                 doctorDto.getLastName(),

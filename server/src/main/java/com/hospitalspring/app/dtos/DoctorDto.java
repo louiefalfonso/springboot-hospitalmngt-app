@@ -17,4 +17,13 @@ public class DoctorDto {
     private String specialization;
     private String schedule;
 
+    public DoctorDto(Long id, String firstName, String lastName, String specialization, String department) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.specialization = specialization;
+        this.department = department;
+    }
+
+
 }
