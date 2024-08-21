@@ -15,6 +15,7 @@ const AddDoctor = () => {
   const [department, setDepartment] = useState("");
   const [specialization, setSpecialization] = useState("");
   const [schedule, setSchedule] = useState("");
+  
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   

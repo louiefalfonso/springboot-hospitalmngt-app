@@ -39,7 +39,7 @@ const Doctors = () => {
                 onClick={toggleModal}
                 className="btn flex items-center gap-1.5 bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-green/[0.85] hover:border-green/[0.85]"
               >
-                + Add New Doctor
+                + Add Doctor
               </button>
             </div>
             <div className="overflow-auto">

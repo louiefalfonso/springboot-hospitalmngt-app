@@ -19,9 +19,8 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
-    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private Date date;
 

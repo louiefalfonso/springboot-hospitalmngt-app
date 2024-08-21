@@ -69,7 +69,7 @@ const DoctorDetails = () => {
                   {Object.keys(currentDoctor).length > 0 ? (
                     <tr>
                       <td>
-                        {currentDoctor.firstName} {currentDoctor.lastName}
+                      Dr. {currentDoctor.firstName} {currentDoctor.lastName}
                       </td>
                       <td>{currentDoctor.email}</td>
                       <td>{currentDoctor.department}</td>

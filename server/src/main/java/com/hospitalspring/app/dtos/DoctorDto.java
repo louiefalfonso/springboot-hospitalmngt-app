@@ -27,7 +27,9 @@ public class DoctorDto {
         this.schedule = schedule;
     }
 
-
+    public DoctorDto(int id) {
+        this.id = Long.valueOf(id);
+    }
 
 
 }
