@@ -12,12 +12,10 @@ import java.util.Date;
 public class AppointmentDto {
 
     private Long id;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date date;
     private String time;
     private String status;
     private String comments;
     private DoctorDto doctor;
-
-
 }

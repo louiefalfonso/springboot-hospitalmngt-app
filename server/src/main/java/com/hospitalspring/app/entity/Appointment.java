@@ -5,7 +5,6 @@ import com.hospitalspring.app.dtos.DoctorDto;
 import jakarta.persistence.*;
 import lombok.*;
 
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
@@ -21,8 +20,8 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
-    @DateTimeFormat(pattern = "dd-mm-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
     @Column(name = "date")
     private Date date;
 
