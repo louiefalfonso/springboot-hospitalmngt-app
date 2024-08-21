@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/api/appointments/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/appointments").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/appointments/").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/api/**").permitAll()
                                 .anyRequest().authenticated()
@@ -61,7 +61,6 @@ public class SecurityConfiguration {
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
         source.registerCorsConfiguration("/**",configuration);
 
 

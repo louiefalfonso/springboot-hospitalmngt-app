@@ -7,7 +7,7 @@ const sidebarData = [
   {
     id: "appoinments",
     label: "Appointments",
-    link: "/appoinments",
+    link: "/appointments",
   },
   {
     id: "patients",
