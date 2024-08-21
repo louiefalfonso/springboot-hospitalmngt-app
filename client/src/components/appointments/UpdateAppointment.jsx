@@ -2,62 +2,79 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { useNavigate, useParams } from "react-router-dom";
 import AppointmentService from "../../services/AppointmentService.js";
-import DoctorService from '../../services/DoctorService.js'
+import DoctorService from "../../services/DoctorService.js";
 import toast, { Toaster } from "react-hot-toast";
 
-const AddAppointment = () => {
-  const navite = useNavigate();
-  const params = useParams();
-  const { id } = params;
+const UpdateAppointment = () => {
+    const navigate = useNavigate();
+    const params = useParams();
+    const { id } = params;
 
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [status, setStatus] = useState("");
-  const [comments, setComments] = useState("");
-  const [doctors, setDoctors] = useState([]);
-  const [selectedDoctor, setSelectedDoctor] = useState(null);
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
+    const [status, setStatus] = useState("");
+    const [comments, setComments] = useState("");
+    const [doctors, setDoctors] = useState([]);
+    const [selectedDoctor, setSelectedDoctor] = useState(null);
 
-  const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    const [error, setError] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = () => {
+      setIsModalOpen(!isModalOpen);
+    };
+
+    const handleDoctorSelect = (doctorId) => {
+      setSelectedDoctor(doctorId === "" ? "" : doctorId);
+    };
+
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (selectedDoctor === null || selectedDoctor === "") {
+      alert("Please select a doctor");
+      return;
+    }
+
+    const currentAppointment = {
+      date: moment(date).format("MM-DD-YYYY"),
+      time,
+      status,
+      comments,
+      doctor: selectedDoctor,
+    };
+
+    AppointmentService.updateCurrentAppointment(currentAppointment, id)
+      .then(() => {
+        navigate("/appointments");
+        toast.success("Udpate Details Complete!");
+        setIsModalOpen(false);
+        window.location.reload();
+      })
+      .catch((error) => {
+        setError(error.message);
+        console.error(error);
+      });
   };
- 
-  const handleDoctorSelect = (doctorId) => {
-    setSelectedDoctor(doctorId === "" ? "" : doctorId);
-  };
 
-  const handleSubmit = (e) => {
-  e.preventDefault();
-  e.stopPropagation();
+  useEffect(() => {
+    const fetchCurrentAppointment = async () => {
+      try {
+        const response = await AppointmentService.getAppointmentById(id);
+        const update = response.data;
+        setDate(update.date);
+        setTime(update.time);
+        setStatus(update.status);
+        setComments(update.comments);
+        setSelectedDoctor(update.doctor);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCurrentAppointment();
+  }, [id]);
 
-  if (selectedDoctor === null || selectedDoctor === "") {
-    alert("Please select a doctor");
-    return;
-  }
-
-  const newAppointment = {
-    date: moment(date).format("MM-DD-YYYY"),
-    time,
-    status,
-    comments,
-    doctor: selectedDoctor,
-  };
-
-  AppointmentService.addNewAppointment(newAppointment)
-    .then(() => {
-      navite("/appointments");
-      toast.success("Appointment added successfully!");
-      setIsModalOpen(false);
-      window.location.reload();
-    })
-    .catch((error) => {
-      setError(error.message);
-      console.error(error);
-    });
-};
-  
   const fetchDoctors = async () => {
     try {
       const response = await DoctorService.getAllDoctors();
@@ -73,12 +90,12 @@ const AddAppointment = () => {
     }
   };
 
-  useEffect(() => {
-    fetchDoctors().then((doctors) => {
-      setDoctors(doctors);
-    });
-  }, []);
-      
+   useEffect(() => {
+     fetchDoctors().then((doctors) => {
+       setDoctors(doctors);
+     });
+   }, []);
+    
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
@@ -203,4 +220,4 @@ const AddAppointment = () => {
   );
 };
 
-export default AddAppointment;
+export default UpdateAppointment;

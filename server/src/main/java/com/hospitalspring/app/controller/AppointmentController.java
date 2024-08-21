@@ -68,7 +68,6 @@ public class AppointmentController {
 
         appointmentRepository.save(updateAppointment);
         AppointmentDto updatedAppointmentDto = modelMapper.map(updateAppointment, AppointmentDto.class);
-
         return ResponseEntity.ok(updatedAppointmentDto);
     }
 

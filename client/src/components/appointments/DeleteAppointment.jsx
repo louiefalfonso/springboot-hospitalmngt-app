@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DoctorService from "../../services/DoctorService.js";
+import AppointmentService from "../../services/AppointmentService.js";
 import toast, { Toaster } from "react-hot-toast";
 
-const DeleteDoctor = () => { 
+const DeleteAppointment = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [doctors, setDoctors] = useState([]);
-
+    const [appointment, setAppointment] = useState({});
 
     useEffect(() => {
-      const fetchDoctor = async () => {
-          
-          const response = await DoctorService.getDoctorById(id);
-          setDoctors(response.data);
-
-        }
-        fetchDoctor();
-      }, [id]);
-
-    const deleteDoctor = async (id) => {
+      const fetchAppointment = async () => {
         try {
-          await DoctorService.deleteDoctor(id);
-          toast.success("Deleted Doctor Successfully!");
-          navigate("/doctors");
+          const response = await AppointmentService.getAppointmentById(id);
+          setAppointment(response.data);
         } catch (error) {
           console.error(error);
         }
       };
+      fetchAppointment();
+    }, [id]);
+
+    const deleteAppointment = async (id) => {
+      try {
+        await AppointmentService.deleteAppointment(id);
+        toast.success("Appointment deleted successfully!");
+        navigate("/appointments");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
@@ -42,16 +45,17 @@ const DeleteDoctor = () => {
               fill="#F1416C"
             ></path>
           </svg>
-          <h1 className="text-danger text-lg">Delete Doctor Details</h1>
+          <h1 className="text-danger text-lg">Delete Scheduled Appointment</h1>
           <h1 className="text-danger">
-            Are you sure you want to delete this doctor?
+            Are you sure you want to delete this ?
             <br />
-            You will not be able to recover this doctor's information.
+            You will not be able to recover this Scheduled Appointment
+            Information.
           </h1>
         </div>
         <button
           className="btn bg-danger border border-danger rounded-md text-white transition-all duration-300 hover:bg-danger/[0.85] hover:border-danger/[0.85]"
-          onClick={() => deleteDoctor(doctors.id)}
+          onClick={() => deleteAppointment(appointment.id)}
         >
           Confirm Delete
         </button>
@@ -60,4 +64,4 @@ const DeleteDoctor = () => {
   );
 };
 
-export default DeleteDoctor;
+export default DeleteAppointment;

@@ -4,7 +4,7 @@ import DoctorService from "../../services/DoctorService.js";
 import toast, { Toaster } from "react-hot-toast";
 
 const UpdateDoctor = () => {
-  const navite = useNavigate();
+  const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
 
@@ -38,7 +38,7 @@ const UpdateDoctor = () => {
 
     DoctorService.updateCurrentDoctor(currentDoctor, id)
       .then(() => {
-        navite("/doctors");
+        navigate("/doctors");
         toast.success("Udpate Details Complete!");
         setIsModalOpen(false);
         window.location.reload();
