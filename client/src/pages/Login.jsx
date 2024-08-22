@@ -21,7 +21,7 @@ const Login = () => {
       });
       const { token } = response.data;
       localStorage.setItem("token", token);  
-      toast.success("Login successful!");
+      toast.success("Login Successful!");
       window.location.href = "/dashboard";
     } catch (error) {
       setError("Invalid email or password.");

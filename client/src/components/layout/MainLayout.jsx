@@ -1,23 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from "../layout/Sidebar";
 import Topbar from "../layout/Topbar";
 import Footer from './Footer';
 
 const MainLayout = ({ children }) => {
-    
+
+  // lg sm Sidebar
+  const [isSidebarSize, setIsSidebarSize] = useState(false);
+
+  const toggleSidebarCollapse = () => {
+    document.body.classList.toggle("toggle-sidebar");
+    setIsSidebarSize(!isSidebarSize);
+  };
+
   return (
     <>
       <React.Fragment>
         <div className="bg-[#f9fbfd] dark:bg-dark text-black">
           <div className="bg-black min-h-[220px] sm:min-h-[250px] bg-bottom fixed hidden w-full -z-50 detached-img"></div>
           {/* Start Menu Sidebar Overlay */}
-          <div className="fixed inset-0 bg-black/60 dark:bg-dark/90 z-[999] lg:hidden "></div>
+          <div
+            className={`fixed inset-0 bg-black/60 dark:bg-dark/90 z-[999] lg:hidden ${
+              isSidebarSize ? "" : "hidden"
+            }`}
+            onKeyDown={toggleSidebarCollapse}
+            onClick={toggleSidebarCollapse}
+          ></div>
           {/* End Menu Sidebar Overlay */}
 
           <div className="flex mx-auto main-container">
-            <Sidebar />
+            <Sidebar isSidebarSize={isSidebarSize} />
             <div className="flex-1 main-content">
-              <Topbar />
+              <Topbar toggleSidebarCollapse={toggleSidebarCollapse} />
               <div className="h-[calc(100vh-60px)] relative overflow-y-auto overflow-x-hidden p-4 space-y-4 detached-content">
                 {children}
                 <Footer />

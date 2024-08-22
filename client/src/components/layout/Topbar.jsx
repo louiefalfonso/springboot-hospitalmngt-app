@@ -3,33 +3,28 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 
-const Topbar = () => {
+const Topbar = ({toggleSidebarCollapse}) => {
+  
+  const API_BASE_URL = import.meta.env.VITE_BASE_URI_DEV;
 
-    const [isSidebarSize, setIsSidebarSize] = useState(false);
-    const toggleSidebarCollapse = () => {
-      document.body.classList.toggle("toggle-sidebar");
-      setIsSidebarSize(!isSidebarSize);
-    };
-
-    const API_BASE_URL = import.meta.env.VITE_BASE_URI_DEV;
-
-    const handleLogout = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          toast.error("You are not logged in.");
-          return;
-        }
-        const response = await axios.post(`${API_BASE_URL}/auth/logout`, {
-          token,
-        });
-        localStorage.removeItem("token");
-        toast.success("Logout successful!");
-        window.location.href = "/login";
-      } catch (error) {
-        toast.error("Error logging out.");
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("You are not logged in.");
+        return;
       }
-    };
+      const response = await axios.post(`${API_BASE_URL}/auth/logout`, {
+        token,
+      });
+      localStorage.removeItem("token");
+      toast.success("Logout successful!");
+      window.location.href = "/login";
+    } catch (error) {
+      toast.error("Error logging out.");
+    }
+  };
+
 
   return (
     <>

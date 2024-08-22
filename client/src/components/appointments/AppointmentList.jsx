@@ -30,6 +30,8 @@ const AppointmentList = () => {
           return "bg-warning text-black";
         case "Completed":
           return "bg-purple text-white";
+        case "Cancelled":
+          return "bg-black text-white";
         default:
           return "bg-muted text-white dark:bg-darkmuted";
       }

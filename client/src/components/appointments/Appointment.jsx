@@ -5,15 +5,12 @@ import { Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 import AddAppointment from "./AddAppointment.jsx";
 import AppointmentService from "../../services/AppointmentService.js";
+import SearchAppointment from "./SearchAppointment.jsx";
 
 const Appointment = () => {
     const [appointments, setAppointments] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-     const toggleModal = () => {
-       setIsModalOpen(!isModalOpen);
-     };
-
+    const toggleModal = () => { setIsModalOpen(!isModalOpen); };
 
     useEffect(() => {
       const fetchAppointments = async () => {
@@ -37,6 +34,8 @@ const Appointment = () => {
           return "bg-warning text-black";
         case "Completed":
           return "bg-purple text-white";
+        case "Cancelled":
+          return "bg-black text-white";
         default:
           return "bg-muted text-white dark:bg-darkmuted";
       }
@@ -48,15 +47,16 @@ const Appointment = () => {
         <div className="grid grid-cols-1 gap-4">
           <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
             <div className="flex items-center justify-between">
-              <h2 className="font-bold">Full Appointment List</h2>
+              <h2 className="font-bold">Appointment List</h2>
               <button
                 type="button"
                 onClick={toggleModal}
                 className="btn flex items-center gap-1.5 bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-green/[0.85] hover:border-green/[0.85]"
               >
-                + Create Appointment
+                + Add Appointment
               </button>
             </div>
+
             <div className="overflow-auto">
               <table className="min-w-[640px] w-full mt-4 table-striped">
                 <thead>
@@ -78,7 +78,9 @@ const Appointment = () => {
                       </td>
                       <td>{appointment.doctor.department}</td>
                       <td
-                        className={`${getStatusColor(appointment.status)} inline-flex items-center rounded-full text-xs justify-center px-1.5 py-0.5 mt-4`}
+                        className={`${getStatusColor(
+                          appointment.status
+                        )} inline-flex items-center rounded-full text-xs justify-center px-1.5 py-0.5 mt-4`}
                       >
                         {appointment.status}
                       </td>
