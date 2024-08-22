@@ -21,7 +21,7 @@ const DoctorsList = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-4 min-h-[calc(100vh-212px)]">
+      <div className="flex flex-col gap-4">
         <div className="grid grid-cols-1 gap-4">
           <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
             <div className="flex items-center justify-between">
@@ -46,7 +46,7 @@ const DoctorsList = () => {
                   </tr>
                 </thead>
                 <tbody className="text-center">
-                  {doctors.slice(0, 7).map((doctor, index) => (
+                  {doctors.slice(0, 5).map((doctor, index) => (
                     <tr className="text-muted" key={doctor.id || index}>
                       <td>
                         Dr. {doctor.firstName} {doctor.lastName}

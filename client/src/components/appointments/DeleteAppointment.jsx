@@ -47,7 +47,7 @@ const DeleteAppointment = () => {
           </svg>
           <h1 className="text-danger text-lg">Delete Scheduled Appointment</h1>
           <h1 className="text-danger">
-            Are you sure you want to delete this ?
+            Are you sure you want to delete this appointment?
             <br />
             You will not be able to recover this Scheduled Appointment
             Information.

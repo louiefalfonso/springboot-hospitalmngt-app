@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Modal from "../layout/Modal";
-import AppointmentService from '../../services/AppointmentService.js'
+import { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 import AddAppointment from "./AddAppointment.jsx";
-import { Toaster } from "react-hot-toast";
+import AppointmentService from "../../services/AppointmentService.js";
 
 const Appointment = () => {
     const [appointments, setAppointments] = useState([]);
-     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
      const toggleModal = () => {
        setIsModalOpen(!isModalOpen);
@@ -30,15 +30,15 @@ const Appointment = () => {
     const getStatusColor = (status) => {
       switch (status) {
         case "Urgent":
-          return "red-500";
+          return "bg-danger text-white";
         case "Confirmed":
-          return "blue-500";
-        case "Completed":
-          return "green-400";
+          return "bg-success text-white";
         case "Reschedule":
-          return "lime-500";
+          return "bg-warning text-black";
+        case "Completed":
+          return "bg-purple text-white";
         default:
-          return "blue-500";
+          return "bg-muted text-white dark:bg-darkmuted";
       }
     };
 
@@ -78,7 +78,7 @@ const Appointment = () => {
                       </td>
                       <td>{appointment.doctor.department}</td>
                       <td
-                        className={`text-${getStatusColor(appointment.status)}`}
+                        className={`${getStatusColor(appointment.status)} inline-flex items-center rounded-full text-xs justify-center px-1.5 py-0.5 mt-4`}
                       >
                         {appointment.status}
                       </td>
