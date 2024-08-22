@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DoctorService from "../../services/DoctorService.js";
-import { Bar,BarChart, AreaChart, Area, XAxis,YAxis,CartesianGrid, Tooltip,ResponsiveContainer, } from "recharts";
+import { AreaChart, Area, XAxis,YAxis,CartesianGrid, Tooltip,ResponsiveContainer, } from "recharts";
 
 const DoctorChart = () => {
   const [doctors, setDoctors] = useState([]);
@@ -58,7 +58,13 @@ const DoctorChart = () => {
   return (
     <>
       <div className="overflow-auto">
-        <ResponsiveContainer width={1100} height={300} overflow="visible">
+        <ResponsiveContainer
+          width="100%"
+          height={300}
+          ignoreWidth={true}
+          ignoreHeight={true}
+          style={{ overflowX: "auto", overflowY: "hidden" }}
+        >
           <AreaChart data={chartData}>
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="specialization" />

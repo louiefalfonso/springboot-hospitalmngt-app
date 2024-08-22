@@ -6,36 +6,39 @@ import DoctorService from "../../services/DoctorService.js";
 import toast, { Toaster } from "react-hot-toast";
 
 const UpdateAppointment = () => {
-    const navigate = useNavigate();
-    const params = useParams();
-    const { id } = params;
+  const navigate = useNavigate();
+  const params = useParams();
+  const { id } = params;
 
-    const [date, setDate] = useState("");
-    const [time, setTime] = useState("");
-    const [status, setStatus] = useState("");
-    const [comments, setComments] = useState("");
-    const [doctors, setDoctors] = useState([]);
-    const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [status, setStatus] = useState("");
+  const [comments, setComments] = useState("");
+  const [doctors, setDoctors] = useState([]);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
 
-    const [error, setError] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const toggleModal = () => {
-      setIsModalOpen(!isModalOpen);
-    };
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
-    const handleDoctorSelect = (doctorId) => {
-      setSelectedDoctor(doctorId === "" ? "" : doctorId);
-    };
+  const handleDoctorSelect = (doctorId) => {
+    const selectedDoctor = doctors.find((doctor) => doctor.id === doctorId);
+    setSelectedDoctor(selectedDoctor || null);
+  };
 
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (selectedDoctor === null || selectedDoctor === "") {
+    if (!selectedDoctor) {
       alert("Please select a doctor");
       return;
     }
+
+     //setSelectedDoctor(selectedDoctor);
 
     const currentAppointment = {
       date: moment(date).format("MM-DD-YYYY"),
@@ -48,15 +51,17 @@ const UpdateAppointment = () => {
     AppointmentService.updateCurrentAppointment(currentAppointment, id)
       .then(() => {
         navigate("/appointments");
-        toast.success("Udpate Details Complete!");
+        //toast.success("Udpate Details Complete!");
         setIsModalOpen(false);
-        window.location.reload();
+        //window.location.reload();
       })
       .catch((error) => {
         setError(error.message);
         console.error(error);
       });
   };
+
+  
 
   useEffect(() => {
     const fetchCurrentAppointment = async () => {
@@ -90,12 +95,16 @@ const UpdateAppointment = () => {
     }
   };
 
-   useEffect(() => {
-     fetchDoctors().then((doctors) => {
-       setDoctors(doctors);
-     });
-   }, []);
-    
+  useEffect(() => {
+    fetchDoctors().then((doctors) => {
+      setDoctors(doctors);
+    });
+  }, []);
+  
+  useEffect(() => {
+    console.log("selectedDoctor changed:", selectedDoctor);
+  }, [selectedDoctor]);
+
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-1">
@@ -180,6 +189,7 @@ const UpdateAppointment = () => {
                 <option value="Confirmed">Confirmed</option>
                 <option value="Reschedule">Reschedule</option>
                 <option value="Cancelled">Cancelled</option>
+                <option value="Completed">Completed</option>
               </select>
             </div>
             <div className="sm:col-span-2">
@@ -194,8 +204,11 @@ const UpdateAppointment = () => {
                 required
                 className="form-input"
                 id="doctors"
-                value={selectedDoctor || 0}
-                onChange={(e) => handleDoctorSelect(parseInt(e.target.value))}
+                value={selectedDoctor ? selectedDoctor.id : ""}
+                onChange={(e) => {
+                  const selectedDoctorId = parseInt(e.target.value);
+                  handleDoctorSelect(selectedDoctorId);
+                }}
               >
                 {doctors.map((doctor) => (
                   <option key={doctor.id} value={doctor.id}>
@@ -209,7 +222,7 @@ const UpdateAppointment = () => {
                 type="submit"
                 className="btn w-full py-2 px-4 text-lg bg-purple border border-purple border-purple rounded-md text-white transition-all duration-300 hover:bg-purple/[0.85] hover:border-purple/[0.85]"
               >
-                Add New Appointment
+                Update Appointment
               </button>
             </div>
           </form>

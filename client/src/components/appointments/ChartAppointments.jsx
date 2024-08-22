@@ -53,7 +53,7 @@ const ChartAppointments = () => {
 
   return (
     <div className="overflow-auto">
-      <ResponsiveContainer width={1100} height={300}>
+      <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={chartData}>
           <Area
             type="monotone"
