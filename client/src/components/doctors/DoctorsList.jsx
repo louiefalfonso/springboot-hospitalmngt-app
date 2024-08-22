@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DoctorService from "../../services/DoctorService.js";
 import { Link } from "react-router-dom";
-Link
 
 const DoctorsList = () => {
     const [doctors, setDoctors] = useState([]);
@@ -18,14 +17,13 @@ const DoctorsList = () => {
        fetchDoctors();
      }, []);
 
-
   return (
     <>
       <div className="flex flex-col gap-4">
         <div className="grid grid-cols-1 gap-4">
           <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
             <div className="flex items-center justify-between">
-              <h2 className="font-bold">Full Doctors List</h2>
+              <h2 className="font-bold">Attendee & Resident List</h2>
               <Link to="/doctors">
                 <button
                   type="button"

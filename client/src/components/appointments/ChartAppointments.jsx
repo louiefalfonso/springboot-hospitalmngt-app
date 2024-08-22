@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AppointmentService from "../../services/AppointmentService.js";
-import { Link } from "react-router-dom";
-
-import { LineChart, Line, XAxis, YAxis, CartesianGrid,Tooltip, ResponsiveContainer } from "recharts"
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,Tooltip, ResponsiveContainer,
+   Area, AreaChart, Scatter } from "recharts"
 
 const ChartAppointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -54,20 +53,22 @@ const ChartAppointments = () => {
 
   return (
     <div className="overflow-auto">
-      <ResponsiveContainer width="100%" height={200}>
-        <LineChart data={chartData}>
-          <Line
+      <ResponsiveContainer width={1100} height={300}>
+        <AreaChart data={chartData}>
+          <Area
             type="monotone"
             dataKey="count"
-            stroke="#f1416c"
             strokeWidth={2}
+            stroke="#8884d8"
+            fill="#8884d8"
             isAnimationActive={true}
           />
+          <Scatter dataKey="count" fill="#ffffff" />
           <XAxis dataKey="status" />
           <YAxis />
           <CartesianGrid stroke="#e5e7eb" />
           <Tooltip />
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );

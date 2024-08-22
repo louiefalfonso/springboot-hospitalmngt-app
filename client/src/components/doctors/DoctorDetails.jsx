@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DoctorService from "../../services/DoctorService.js";
+import AppointmentService from "../../services/AppointmentService.js";
 import Modal from "../layout/Modal";
 import { createPortal } from "react-dom";
 import UpdateDoctor from "./UpdateDoctor.jsx";
@@ -12,6 +13,7 @@ const DoctorDetails = () => {
     const { id } = params;
     const [currentDoctor, setCurrentDoctor] = useState({});
     const [error, setError] = useState(null);
+    const [appointments, setAppointments] = useState([]);
 
      const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
      const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -36,7 +38,7 @@ const DoctorDetails = () => {
       };
       fetchCurrentDoctor();
     }, [id]);
-    
+
   return (
     <>
       <div className="flex flex-col gap-4 min-h-[calc(100vh-212px)]">
@@ -68,7 +70,7 @@ const DoctorDetails = () => {
                   {Object.keys(currentDoctor).length > 0 ? (
                     <tr>
                       <td>
-                      Dr. {currentDoctor.firstName} {currentDoctor.lastName}
+                        Dr. {currentDoctor.firstName} {currentDoctor.lastName}
                       </td>
                       <td>{currentDoctor.email}</td>
                       <td>{currentDoctor.department}</td>

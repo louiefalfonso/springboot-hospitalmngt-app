@@ -15,7 +15,7 @@ const Sidebar = ({ isSidebarSize }) => {
     <>
       <React.Fragment>
         <nav
-          className={`sidebar fixed z-[9999] flex-none w-[240px] ltr:border-r rtl:border-l dark:bg-darkborder border-black/10 transition-all duration-300 ${
+          className={`sidebar fixed z-[9999] flex-none w-[240px] border-r border-black/10 transition-all duration-300 ${
             isSidebarSize ? "block" : "hidden"
           } md:block`}
         >
@@ -35,7 +35,7 @@ const Sidebar = ({ isSidebarSize }) => {
               </Link>
             </div>
             <div className="h-[calc(100vh-60px)]  overflow-y-auto overflow-x-hidden px-5 pb-4 space-y-16 detached-menu mt-5">
-              <ul className="relative flex flex-col gap-1">
+              <ul className="relative flex flex-col gap-4">
                 {(sidebarData || []).map((item, key) => (
                   <React.Fragment key={key}>
                     {item.isTitle ? (

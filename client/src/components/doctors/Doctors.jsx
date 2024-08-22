@@ -6,6 +6,7 @@ import DoctorService from "../../services/DoctorService.js";
 import { createPortal } from "react-dom";
 import { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import DoctorChart from "./DoctorChart.jsx";
 
 const Doctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -32,12 +33,18 @@ const Doctors = () => {
       <div className="flex flex-col gap-4 min-h-[calc(100vh-212px)]">
         <div className="grid grid-cols-1 gap-4">
           <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
+            <h2 className="mb-4 text-base font-semibold text-black dark:text-white/80">
+              Attendee & Resident Stats
+            </h2>
+            <DoctorChart />
+          </div>
+          <div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
             <div className="flex items-center justify-between">
-              <h2 className="font-bold">Full Doctors List</h2>
+              <h2 className="font-bold">Attendee & Resident List</h2>
               <button
                 type="button"
                 onClick={toggleModal}
-                className="btn flex items-center gap-1.5 bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-green/[0.85] hover:border-green/[0.85]"
+                className="btn py-1 px-3.5 text-xs bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]"
               >
                 + Add Doctor
               </button>
@@ -87,7 +94,7 @@ const Doctors = () => {
             toggleModal={toggleModal}
             title="Add New Doctor"
             divClass="flex items-start justify-center min-h-screen px-4"
-            content={<AddDoctor toggleModal={toggleModal}/>}
+            content={<AddDoctor toggleModal={toggleModal} />}
             sizeClass="relative w-full max-w-lg p-0 my-8 overflow-hidden bg-white border rounded-lg border-black/10 dark:bg-darklight dark:border-darkborder"
             spaceClass="p-5 space-y-4"
           />,

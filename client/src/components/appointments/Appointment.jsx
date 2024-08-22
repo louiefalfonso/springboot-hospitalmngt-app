@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+
 import Modal from "../layout/Modal";
 import { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { createPortal } from "react-dom";
 import AddAppointment from "./AddAppointment.jsx";
 import AppointmentService from "../../services/AppointmentService.js";
-import SearchAppointment from "./SearchAppointment.jsx";
+
 
 const Appointment = () => {
     const [appointments, setAppointments] = useState([]);
@@ -51,12 +52,11 @@ const Appointment = () => {
               <button
                 type="button"
                 onClick={toggleModal}
-                className="btn flex items-center gap-1.5 bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-green/[0.85] hover:border-green/[0.85]"
+                className="btn py-1 px-3.5 text-xs bg-success border border-success rounded-md text-white transition-all duration-300 hover:bg-success/[0.85] hover:border-success/[0.85]"
               >
                 + Add Appointment
               </button>
             </div>
-
             <div className="overflow-auto">
               <table className="min-w-[640px] w-full mt-4 table-striped">
                 <thead>
