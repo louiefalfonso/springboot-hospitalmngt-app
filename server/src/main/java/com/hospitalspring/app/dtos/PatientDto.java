@@ -19,7 +19,6 @@ public class PatientDto {
     private String number;
     private String diagnosis;
 
-
     public String getFullName() {
         return fullName;
     }

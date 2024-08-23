@@ -1,6 +1,5 @@
 package com.hospitalspring.app.controller;
 
-
 import com.hospitalspring.app.dtos.PatientDto;
 import com.hospitalspring.app.entity.Patient;
 import com.hospitalspring.app.repository.PatientRepository;
