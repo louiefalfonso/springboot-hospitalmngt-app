@@ -6,7 +6,7 @@ import DoctorService from '../../services/DoctorService.js'
 import toast, { Toaster } from "react-hot-toast";
 
 const AddAppointment = () => {
-  const navite = useNavigate();
+  const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
 
@@ -47,7 +47,7 @@ const AddAppointment = () => {
 
   AppointmentService.addNewAppointment(newAppointment)
     .then(() => {
-      navite("/appointments");
+      navigate("/appointments");
       toast.success("Appointment added successfully!");
       setIsModalOpen(false);
       window.location.reload();
@@ -163,6 +163,7 @@ const AddAppointment = () => {
                 <option value="Confirmed">Confirmed</option>
                 <option value="Reschedule">Reschedule</option>
                 <option value="Cancelled">Cancelled</option>
+                <option value="Completed">Completed</option>
               </select>
             </div>
             <div className="sm:col-span-2">

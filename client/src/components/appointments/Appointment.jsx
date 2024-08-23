@@ -27,23 +27,22 @@ const Appointment = () => {
       fetchAppointments();
     }, []);
 
-    const getStatusColor = (status) => {
-      switch (status) {
-        case "Urgent":
-          return "bg-danger text-white";
-        case "Confirmed":
-          return "bg-success text-white";
-        case "Reschedule":
-          return "bg-warning text-black";
-        case "Completed":
-          return "bg-purple text-white";
-        case "Cancelled":
-          return "bg-black text-white";
-        default:
-          return "bg-muted text-white dark:bg-darkmuted";
-      }
-    };
-
+   const getStatusColor = (status) => {
+     switch (status) {
+       case "Urgent":
+         return "bg-danger text-white";
+       case "Confirmed":
+         return "bg-success text-white";
+       case "Reschedule":
+         return "bg-warning text-black";
+       case "Completed":
+         return "bg-purple text-white";
+       case "Cancelled":
+         return "bg-black text-white";
+       default:
+         return "bg-info text-white dark:bg-darkmuted";
+     }
+   };
   return (
     <>
       <div className="flex flex-col gap-4 min-h-[calc(100vh-212px)]">
