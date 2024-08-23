@@ -59,8 +59,8 @@ const ChartAppointments = () => {
             type="monotone"
             dataKey="count"
             strokeWidth={2}
-            stroke="#8884d8"
-            fill="#8884d8"
+            stroke="#009ef7"
+            fill="#009ef7"
             isAnimationActive={true}
           />
           <Scatter dataKey="count" fill="#ffffff" />

@@ -47,27 +47,30 @@ const CountAppointments = () => {
 
   return (
     <>
-      <div className="flex flex-nowrap gap-4">
-        {Object.keys(appointments).map((status) => (
-          <div
-            key={status}
-            className= {`${getStatusColor( status)}
-            flex-1 mt-4 text-center border rounded py-9 border-black/10 dark:bg-darklight dark:border-darkborder`}>
-            <div className="dark:bg-white/5 text-gray flex flex-nowrap gap-4 flex-col">
-              <h1 className="mt-6 text-4xl font-semibold dark:text-white">
-                <CountUp end={appointments[status]} />
-              </h1>
-            </div>
-            <p
-              className={`${getStatusColor(
-                status
-              )} inline-flex items-center rounded-full text-xs justify-center px-1.5 py-0.5 mt-4`}
+      <div className="overflow-auto">
+        <div className="flex flex-nowrap gap-4">
+          {Object.keys(appointments).map((status) => (
+            <div
+              key={status}
+              className={`${getStatusColor(status)}
+            flex-1 mt-4 text-center border rounded py-9 border-black/10 dark:bg-darklight dark:border-darkborder`}
             >
-              {" "}
-              {status} Cases
-            </p>
-          </div>
-        ))}
+              <div className="dark:bg-white/5 text-gray flex flex-nowrap gap-4 flex-col">
+                <h1 className="mt-6 text-4xl font-semibold dark:text-white">
+                  <CountUp end={appointments[status]} />
+                </h1>
+              </div>
+              <p
+                className={`${getStatusColor(
+                  status
+                )} inline-flex items-center rounded-full text-xs justify-center px-1.5 py-0.5 mt-4`}
+              >
+                {" "}
+                {status} Cases
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

@@ -7,6 +7,7 @@ import DoctorsPage from "./pages/DoctorsPage";
 import PatientsPage from "./pages/PatientsPage";
 import DoctorPage from "./pages/doctors/[...id]";
 import AppoinmentPage from "./pages/appointments/[...id]";
+import PatientPage from "./pages/patients/[...id]";
 
 
 function App() {
@@ -18,14 +19,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
-
           <Route path="/appointments" element={<AppoinmentsPage />} />
           <Route path="/appointments/:id" element={<AppoinmentPage />} />
-
           <Route path="/doctors" element={<DoctorsPage />} />
           <Route path="/doctors/:id" element={<DoctorPage />} />
-
           <Route path="/patients" element={<PatientsPage />} />
+          <Route path="/patients/:id" element={<PatientPage/>} />
         </Routes>
       </main>
     </>
