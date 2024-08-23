@@ -36,6 +36,9 @@ public class Patient {
     @Column(name = "diagnosis")
     private String diagnosis;
 
+    @Column(name = "type")
+    private String type;
+
 
     public void setId(Long id) {
         this.id = id;
@@ -67,6 +70,14 @@ public class Patient {
 
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getFullName() {

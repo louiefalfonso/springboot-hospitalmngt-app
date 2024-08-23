@@ -58,6 +58,7 @@ public class PatientController {
         updatePatient.setNumber(patientDetails.getNumber());
         updatePatient.setAddress(patientDetails.getAddress());
         updatePatient.setDiagnosis(patientDetails.getDiagnosis());
+        updatePatient.setType(patientDetails.getType());
 
         patientRepository.save(updatePatient);
         return ResponseEntity.ok(updatePatient);

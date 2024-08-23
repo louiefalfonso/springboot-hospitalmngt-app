@@ -55,6 +55,7 @@ public class PatientServiceImpl implements PatientService {
         patient.setNumber(updatePatient.getNumber());
         patient.setAddress(updatePatient.getAddress());
         patient.setDiagnosis(updatePatient.getDiagnosis());
+        patient.setType(updatePatient.getType());
 
         Patient updatePatientObj = patientRepository.save(patient);
         return modelMapper.map(updatePatientObj, PatientDto.class);

@@ -18,6 +18,7 @@ public class PatientDto {
     private String address;
     private String number;
     private String diagnosis;
+    private String type;
 
     public String getFullName() {
         return fullName;
@@ -47,6 +48,9 @@ public class PatientDto {
         return diagnosis;
    }
 
+    public String getType() {
+        return type;
+    }
 }
 
 
