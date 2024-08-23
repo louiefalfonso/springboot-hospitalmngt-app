@@ -82,13 +82,9 @@ const UpdateAppointment = () => {
       doctor: doctor,
     };
 
-    console.log(currentAppointment);
-    console.log(selectedDoctor);
-
     AppointmentService.updateCurrentAppointment(currentAppointment, id)
-      .then((response) => {
-        console.log(response)
-        //navigate("/appointments");
+      .then(() => {
+        navigate("/appointments");
         toast.success("Udpate Details Complete!");
         setIsModalOpen(false);
         window.location.reload();

@@ -19,6 +19,12 @@ const sidebarData = [
     label: "Doctors",
     link: "/doctors",
   },
+  {
+    id: "nurses",
+    label: "Nurses",
+    link: "/nurses",
+  },
+  
 ];
 
 export { sidebarData };
