@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import logo from "../assets/st-lukes-logo-header.svg";
+import background from "../assets/medical-background.jpg";
+
 
 const Register = () => {
   const API_BASE_URL = import.meta.env.VITE_BASE_URI_DEV;
@@ -28,7 +30,10 @@ const Register = () => {
   };
   return (
     <>
-      <div className="min-h-[calc(100vh-134px)] py-4 px-4 sm:px-12 flex justify-center items-center max-w-[1440px] mx-auto">
+      <div
+        style={{ backgroundImage: `url(${background})` }}
+        className="min-h-screen py-4 px-4 sm:px-12 flex justify-center items-center mx-auto bg-cover bg-center bg-no-repeat"
+      >
         <div className="max-w-[550px] flex-none w-full bg-white border border-black/10 p-6 sm:p-10 lg:px-10 lg:py-14 rounded-2xl dark:bg-darklight dark:border-darkborder">
           <img src={logo} className="mx-auto dark-logo h-16 logo" alt="logo" />
           <br />

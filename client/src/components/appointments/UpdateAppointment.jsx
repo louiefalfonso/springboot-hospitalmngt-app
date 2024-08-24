@@ -34,7 +34,6 @@ const UpdateAppointment = () => {
     });
   }, []);
 
-
   const fetchDoctors = async () => {
     try {
       const response = await DoctorService.getAllDoctors();
@@ -67,14 +66,13 @@ const UpdateAppointment = () => {
       doctor: selectedDoctor,
     };
 
-    
-
+  
     AppointmentService.updateCurrentAppointment(currentAppointment, id)
       .then(() => {
         navigate("/appointments");
-        //toast.success("Udpate Details Complete!");
+        toast.success("Udpate Details Complete!");
         setIsModalOpen(false);
-        //window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         setError(error.message);
@@ -87,7 +85,7 @@ const UpdateAppointment = () => {
       try {
         const response = await AppointmentService.getAppointmentById(id);
         const update = response.data;
-        const parsedDate = moment(update.date, "YYYY-MM-DD");
+        const parsedDate = moment(update.date,"YYYY-MM-DD");
         setDate(parsedDate);
         setTime(update.time);
         setStatus(update.status);

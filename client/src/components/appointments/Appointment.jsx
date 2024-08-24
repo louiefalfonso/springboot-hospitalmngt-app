@@ -8,8 +8,6 @@ import AddAppointment from "./AddAppointment.jsx";
 import AppointmentService from "../../services/AppointmentService.js";
 import CountAppointments from "./CountAppointments.jsx";
 
-
-
 const Appointment = () => {
     const [appointments, setAppointments] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
