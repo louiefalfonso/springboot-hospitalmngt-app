@@ -39,7 +39,6 @@ public class Patient {
     @Column(name = "type")
     private String type;
 
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -107,4 +106,10 @@ public class Patient {
     public String getDiagnosis() {
         return diagnosis;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+
 }

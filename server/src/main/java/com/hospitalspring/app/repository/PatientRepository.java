@@ -7,4 +7,7 @@ import java.util.Optional;
 
 public interface PatientRepository extends JpaRepository<Patient,Long> {
     Optional<Patient> findAllById (Long PatientId);
+
+    // for JUnit Test Case Only
+    Optional<Patient> findByEmail(String mail);
 }
