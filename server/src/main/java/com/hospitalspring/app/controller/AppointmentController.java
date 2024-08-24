@@ -64,7 +64,7 @@ public class AppointmentController {
         updateAppointment.setTime(appointmentDetails.getTime());
         updateAppointment.setStatus(appointmentDetails.getStatus());
         updateAppointment.setComments(appointmentDetails.getComments());
-        updateAppointment.setDoctor(updateAppointment.getDoctor());
+        updateAppointment.setDoctor(appointmentDetails.getDoctor());
 
         appointmentRepository.save(updateAppointment);
         AppointmentDto updatedAppointmentDto = modelMapper.map(updateAppointment, AppointmentDto.class);

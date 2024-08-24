@@ -38,7 +38,7 @@ const AddAppointment = () => {
   }
 
   const newAppointment = {
-    date: moment(date).format("MM-DD-YYYY"),
+    date: moment(date).format("DD-MM-YYYY"),
     time,
     status,
     comments,

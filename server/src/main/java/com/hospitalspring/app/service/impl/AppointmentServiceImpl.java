@@ -3,6 +3,7 @@ package com.hospitalspring.app.service.impl;
 import com.hospitalspring.app.dtos.AppointmentDto;
 import com.hospitalspring.app.entity.Appointment;
 import com.hospitalspring.app.repository.AppointmentRepository;
+import com.hospitalspring.app.repository.DoctorRepository;
 import com.hospitalspring.app.service.AppointmentService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
 
+    private DoctorRepository doctorRepository;
     private AppointmentRepository appointmentRepository;
     private ModelMapper modelMapper;
 

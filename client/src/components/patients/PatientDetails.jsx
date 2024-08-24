@@ -107,7 +107,9 @@ const PatientDetails = () => {
                       </tr>
                       <tr className="ltr:text-left rtl:text-right">
                         <td>Diagnosis</td>
-                        <td className="">{currentPatient.diagnosis}</td>
+                        <td className="break-words whitespace-normal">
+                          {currentPatient.diagnosis}
+                        </td>
                       </tr>
                       <tr className="ltr:text-left rtl:text-right">
                         <td>

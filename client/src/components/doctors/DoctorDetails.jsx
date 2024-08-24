@@ -6,6 +6,7 @@ import Modal from "../layout/Modal";
 import { createPortal } from "react-dom";
 import UpdateDoctor from "./UpdateDoctor.jsx";
 import DeleteDoctor from "./DeleteDoctor.jsx";
+import AssignedAppointments from "./AssignedAppointments.jsx";
 
 const DoctorDetails = () => {
     const navigate = useNavigate();
@@ -101,8 +102,12 @@ const DoctorDetails = () => {
                 </tbody>
               </table>
             </div>
+            
           </div>
         </div>
+        {/*<div className="p-5 bg-white border rounded border-black/10 dark:bg-darklight dark:border-darkborder">
+           <AssignedAppointments/> 
+        </div>*/}
       </div>
       {isUpdateModalOpen &&
         createPortal(

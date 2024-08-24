@@ -25,8 +25,7 @@ const UpdateAppointment = () => {
   };
 
    const handleDoctorSelect = (doctorId) => {
-     const selectedDoctor = doctors.find((doctor) => doctor.id === doctorId);
-     setSelectedDoctor(selectedDoctor);
+     setSelectedDoctor(doctorId === "" ? "" : doctorId);
    };
 
   useEffect(() => {
@@ -60,34 +59,22 @@ const UpdateAppointment = () => {
       return;
     }
 
-  let doctor;
-  if (selectedDoctor.id === "new") {
-    doctor = {
-      id: selectedDoctor.id,
-      firstName: selectedDoctor.name,
-      lastName: "",
-    };
-  } else {
-    doctor = doctors.find((doctor) => doctor.id === selectedDoctor.id);
-  }
-
-   const formattedDate = moment(date, "MM/DD/YYYY").format("YYYY-MM-DD");
-   console.log(date)
-
     const currentAppointment = {
-      date: formattedDate,
+      date: moment(date).format("MM-DD-YYYY"),
       time,
       status,
       comments,
-      doctor: doctor,
+      doctor: selectedDoctor,
     };
+
+    
 
     AppointmentService.updateCurrentAppointment(currentAppointment, id)
       .then(() => {
         navigate("/appointments");
-        toast.success("Udpate Details Complete!");
+        //toast.success("Udpate Details Complete!");
         setIsModalOpen(false);
-        window.location.reload();
+        //window.location.reload();
       })
       .catch((error) => {
         setError(error.message);
@@ -100,12 +87,13 @@ const UpdateAppointment = () => {
       try {
         const response = await AppointmentService.getAppointmentById(id);
         const update = response.data;
-        console.log(response.data)
-        setDate(update.date);
+        const parsedDate = moment(update.date, "YYYY-MM-DD");
+        setDate(parsedDate);
         setTime(update.time);
         setStatus(update.status);
         setComments(update.comments);
         setSelectedDoctor(update.doctor);
+
       } catch (error) {
         console.error(error);
       }
@@ -213,11 +201,8 @@ const UpdateAppointment = () => {
                 required
                 className="form-input"
                 id="doctors"
-                value={selectedDoctor ? selectedDoctor.id : ""}
-                onChange={(e) => {
-                  const selectedDoctorId = parseInt(e.target.value);
-                  handleDoctorSelect(selectedDoctorId);
-                }}
+                value={selectedDoctor || 0}
+                onChange={(e) => handleDoctorSelect(parseInt(e.target.value))}
               >
                 {doctors.map((doctor) => (
                   <option key={doctor.id} value={doctor.id}>
@@ -225,7 +210,6 @@ const UpdateAppointment = () => {
                   </option>
                 ))}
               </select>
-
             </div>
             <div className="sm:col-span-2">
               <button

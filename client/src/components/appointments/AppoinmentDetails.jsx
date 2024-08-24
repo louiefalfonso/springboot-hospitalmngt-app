@@ -60,6 +60,10 @@ const AppoinmentDetails = () => {
               {Object.keys(currentAppointment).length > 0 ? (
                 <div className="space-y-4">
                   <p>
+                    <span className="font-bold">Appointment Id:</span>{" "}
+                    {currentAppointment.id}
+                  </p>
+                  <p>
                     <span className="font-bold">Date:</span>{" "}
                     {currentAppointment.date}
                   </p>

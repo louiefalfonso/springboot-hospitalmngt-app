@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -20,9 +22,9 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "time")
     private String time;
@@ -36,6 +38,7 @@ public class Appointment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", nullable = true)
     private Doctor doctor;
+
 }
 
 
