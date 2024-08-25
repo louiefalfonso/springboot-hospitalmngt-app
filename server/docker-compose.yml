@@ -5,9 +5,9 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mydb
-      - SPRING_DATASOURCE_USERNAME=myuser
-      - SPRING_DATASOURCE_PASSWORD=mypassword
+      - SPRING_DATASOURCE_URL=postgresql://postgress_sb3_stlukesapp_user:uw8teD2SEyc2elbSPo8riLhm0AOI3Ewx@dpg-cr5p6gdumphs73e6vq60-a.oregon-postgres.render.com/postgress_sb3_stlukesapp
+      - SPRING_DATASOURCE_USERNAME=postgress_sb3_stlukesapp_user
+      - SPRING_DATASOURCE_PASSWORD=uw8teD2SEyc2elbSPo8riLhm0AOI3Ewx
     depends_on:
       - db
   db:
