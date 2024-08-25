@@ -8,6 +8,7 @@ import PatientsPage from "./pages/PatientsPage";
 import DoctorPage from "./pages/doctors/[...id]";
 import AppoinmentPage from "./pages/appointments/[...id]";
 import PatientPage from "./pages/patients/[...id]";
+import ProtectedRoute from "./services/ProtectedRoute";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />          
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/appointments" element={<AppoinmentsPage />} />
           <Route path="/appointments/:id" element={<AppoinmentPage />} />

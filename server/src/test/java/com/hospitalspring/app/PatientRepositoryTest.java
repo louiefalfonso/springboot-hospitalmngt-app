@@ -120,5 +120,54 @@ public class PatientRepositoryTest {
         Assertions.assertThat(patient1).isNull();
     }
 
+    //JUnit Test for Find All Patients
+    @Test
+    public void findAllPatientsTest(){
+        List<Patient> patients = patientRepository.findAll();
+        Assertions.assertThat(patients).isNotEmpty();
+        Assertions.assertThat(patients.size()).isGreaterThan(0);
+    }
 
+    //JUnit Test for Patient Builder
+    @Test
+    public void builderTest() {
+        // Create a new patient using the builder
+        Patient patient = Patient.builder()
+                .fullName("Daniel Brookes")
+                .email("danielbrk@yahoo.com")
+                .number("(0191) 403 5384")
+                .sex("Male")
+                .age("39")
+                .address("11 Phalp Street South Hetton DH6 2SS")
+                .diagnosis("Rheumatoid lung disease with rheumatoid arthritis of unspecified site")
+                .build();
+
+        // Verify that the patient's fields are set correctly
+        Assertions.assertThat(patient.getFullName()).isEqualTo("Daniel Brookes");
+        Assertions.assertThat(patient.getEmail()).isEqualTo("danielbrk@yahoo.com");
+        Assertions.assertThat(patient.getNumber()).isEqualTo("(0191) 403 5384");
+        Assertions.assertThat(patient.getSex()).isEqualTo("Male");
+        Assertions.assertThat(patient.getAge()).isEqualTo("39");
+        Assertions.assertThat(patient.getAddress()).isEqualTo("11 Phalp Street South Hetton DH6 2SS");
+        Assertions.assertThat(patient.getDiagnosis()).isEqualTo("Rheumatoid lung disease with rheumatoid arthritis of unspecified site");
+    }
+
+    @Test
+    public void toStringTest() {
+        Patient patient = Patient.builder()
+                .id(1L)
+                .fullName("Daniel Brookes")
+                .email("danielbrk@yahoo.com")
+                .number("(0191) 403 5384")
+                .sex("Male")
+                .age("39")
+                .address("11 Phalp Street South Hetton DH6 2SS")
+                .type("In-Patient")
+                .diagnosis("Rheumatoid lung disease with rheumatoid arthritis of unspecified site")
+                .build();
+
+        String expectedToString = "Patient(id=1, fullName=Daniel Brookes, email=danielbrk@yahoo.com, number=(0191) 403 5384, sex=Male, age=39, address=11 Phalp Street South Hetton DH6 2SS, diagnosis=Rheumatoid lung disease with rheumatoid arthritis of unspecified site, type=In-Patient)";
+
+        Assertions.assertThat(patient.toString()).isEqualTo(expectedToString);
+    }
 }
