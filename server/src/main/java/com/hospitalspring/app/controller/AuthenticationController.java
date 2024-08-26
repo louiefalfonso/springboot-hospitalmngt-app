@@ -27,6 +27,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app")
     @PostMapping("/signup")
     public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
 
@@ -34,6 +35,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(registeredUser);
     }
 
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app")
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
 
