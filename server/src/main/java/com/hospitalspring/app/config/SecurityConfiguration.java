@@ -41,10 +41,11 @@ public class SecurityConfiguration {
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/api/**").permitAll()
-                                .requestMatchers("https://springboot3-stlukesapp.netlify.app").permitAll()
-                                .requestMatchers("https://springboot-hospitalmngt-app.onrender.com").permitAll()
+                                .requestMatchers("https://springboot-hospitalmngt-app.onrender.com/**").permitAll()
+                                .requestMatchers("https://springboot3-stlukesapp.netlify.app/**").permitAll()
                                 .anyRequest().authenticated()
                 )
+
                 .exceptionHandling( exception -> exception
                         .authenticationEntryPoint(null)
                 )
@@ -52,40 +53,25 @@ public class SecurityConfiguration {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
 
-
-        /*http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                                .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/api/**").permitAll()
-                                .anyRequest().authenticated()
-
-                ).exceptionHandling( exception -> exception
-                        .authenticationEntryPoint(null)
-                ).sessionManagement( session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                );
-
-         */
         return http.build();
 
 
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://springboot-hospitalmngt-app.onrender.com", "https://springboot3-stlukesapp.netlify.app"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-        configuration.setExposedHeaders(List.of("Access-Control-Allow-Origin"));
-        configuration.addAllowedOrigin("*");
-        configuration.addExposedHeader("Access-Control-Allow-Origin");
+        configuration.setAllowedOrigins(List.of("https://springboot-hospitalmngt-app.onrender.com/", "https://springboot3-stlukesapp.netlify.app/"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
+        configuration.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+        configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-        source.registerCorsConfiguration("/auth/signup", configuration);
 
         return source;
     }
+
 }
