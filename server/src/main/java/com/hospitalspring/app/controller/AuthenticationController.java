@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
+@CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app")
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
