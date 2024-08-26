@@ -35,11 +35,14 @@ public class SecurityConfiguration {
         AuthenticationEntryPoint authenticationEntryPoint = null;
 
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/api/**").permitAll()
+                                .requestMatchers("https://springboot3-stlukesapp.netlify.app").permitAll()
+                                .requestMatchers("https://springboot-hospitalmngt-app.onrender.com").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .exceptionHandling( exception -> exception
@@ -76,9 +79,12 @@ public class SecurityConfiguration {
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setExposedHeaders(List.of("Access-Control-Allow-Origin"));
+        configuration.addAllowedOrigin("*");
+        configuration.addExposedHeader("Access-Control-Allow-Origin");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/auth/signup", configuration);
 
         return source;
     }
