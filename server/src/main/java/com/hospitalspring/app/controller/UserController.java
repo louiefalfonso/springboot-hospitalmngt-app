@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins= {"https://springboot3-stlukesapp.netlify.app"})
 @RequestMapping("/users")
 @RestController
 public class UserController {
