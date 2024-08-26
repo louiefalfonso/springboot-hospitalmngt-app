@@ -21,7 +21,6 @@ com/hospitalspring/app/controller/AppointmentController.class
 com/hospitalspring/app/service/AppointmentService.class
 com/hospitalspring/app/entity/Appointment.class
 com/hospitalspring/app/config/JwtAuthenticationFilter.class
-com/hospitalspring/app/config/CorsConfig.class
 com/hospitalspring/app/dtos/LoginUserDto.class
 com/hospitalspring/app/dtos/AppointmentDto.class
 com/hospitalspring/app/responses/LoginResponse.class
