@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+// eslint-disable-next-line no-undef
 const baseUriDev = process.env.VITE_BASE_URI_DEV;
 
 // https://vitejs.dev/config/

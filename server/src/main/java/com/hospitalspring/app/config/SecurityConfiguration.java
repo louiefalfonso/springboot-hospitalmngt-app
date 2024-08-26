@@ -8,11 +8,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
@@ -41,10 +46,9 @@ public class SecurityConfiguration {
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/api/**").permitAll()
-                                .requestMatchers("https://springboot-hospitalmngt-app.onrender.com/**").permitAll()
-                                .requestMatchers("https://springboot3-stlukesapp.netlify.app/**").permitAll()
                                 .anyRequest().authenticated()
                 )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .exceptionHandling( exception -> exception
                         .authenticationEntryPoint(null)
@@ -61,7 +65,8 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://springboot-hospitalmngt-app.onrender.com/", "https://springboot3-stlukesapp.netlify.app/"));
+        configuration.setAllowedOrigins(List.of("*"));
+        //configuration.setAllowedOrigins(List.of("https://springboot-hospitalmngt-app.onrender.com/", "https://springboot3-stlukesapp.netlify.app/"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
         configuration.setExposedHeaders(List.of("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
@@ -72,6 +77,17 @@ public class SecurityConfiguration {
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        User.UserBuilder users = User.withDefaultPasswordEncoder();
+
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(users.username("user").password("password").roles("USER").build());
+        manager.createUser(users.username("admin").password("password").roles("USER", "ADMIN").build());
+
+        return manager;
     }
 
 }
