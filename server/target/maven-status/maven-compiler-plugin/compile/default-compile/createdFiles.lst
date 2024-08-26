@@ -14,6 +14,7 @@ com/hospitalspring/app/repository/DoctorRepository.class
 com/hospitalspring/app/entity/User.class
 com/hospitalspring/app/dtos/DoctorDto.class
 com/hospitalspring/app/entity/Patient$PatientBuilder.class
+com/hospitalspring/app/config/SecurityConfiguration$1.class
 com/hospitalspring/app/mapper/DoctorMapper.class
 com/hospitalspring/app/entity/Doctor$DoctorBuilder.class
 com/hospitalspring/app/dtos/PatientDto.class
