@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "http://locathost/8080/",
+        target: "import.meta.env.VITE_BASE_URI_DEV",
         changeOrigin: true,
         secure: false,
         cors: true,

@@ -8,7 +8,6 @@ import PatientsPage from "./pages/PatientsPage";
 import DoctorPage from "./pages/doctors/[...id]";
 import AppoinmentPage from "./pages/appointments/[...id]";
 import PatientPage from "./pages/patients/[...id]";
-import ProtectedRoute from "./services/ProtectedRoute";
 
 
 function App() {
