@@ -58,6 +58,8 @@ public class SecurityConfiguration {
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/api/**").permitAll()
+                                .requestMatchers("https://springboot3-stlukesapp.netlify.app/api/**").permitAll()
+                                .requestMatchers("https://springboot-hospitalmngt-app.onrender.com/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
