@@ -33,6 +33,22 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         AuthenticationEntryPoint authenticationEntryPoint = null;
+
+        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((authorize) ->
+                        authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/api/**").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .exceptionHandling( exception -> exception
+                        .authenticationEntryPoint(null)
+                )
+                .sessionManagement( session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
+
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
@@ -46,6 +62,8 @@ public class SecurityConfiguration {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
         return http.build();
+
+
     }
 
     @Bean

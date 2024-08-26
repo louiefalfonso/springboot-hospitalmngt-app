@@ -12,6 +12,13 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         cors: true,
+        configure: (proxy, req, res) => {
+          res.setHeader("Access-Control-Allow-Origin", "*");
+          res.setHeader(
+            "Access-Control-Allow-Headers",
+            "Origin, X-Requested-With, Content-Type, Accept"
+          );
+        },
       },
     },
   },

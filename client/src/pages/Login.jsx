@@ -78,7 +78,7 @@ const Login = () => {
           </form>
           <p className="mt-5 text-center text-muted dark:text-darkmuted">
             Not an Employee yet?{" "}
-            <Link to="/register" className="text-blue-500 dark:text-white">
+            <Link to="/signup" className="text-blue-500 dark:text-white">
               Create an Account
             </Link>
           </p>
