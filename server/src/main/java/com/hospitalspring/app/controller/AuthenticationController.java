@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 
-@CrossOrigin(origins = {"https://springboot-hospitalmngt-app.onrender.com", "https://springboot3-stlukesapp.netlify.app"}, methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
@@ -28,7 +28,6 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app")
     @PostMapping("/signup")
     public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
 
@@ -36,7 +35,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(registeredUser);
     }
 
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app")
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
 
@@ -47,7 +45,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(loginResponse);
     }
 
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app")
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response) {
         Optional<Cookie> optionalCookie = getCookie(request, "jwt-token");
