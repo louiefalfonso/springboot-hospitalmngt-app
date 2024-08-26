@@ -18,7 +18,6 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"https://springboot-hospitalmngt-app.onrender.com", "https://springboot3-stlukesapp.netlify.app"})
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -50,16 +49,16 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class);
-        http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(AbstractHttpConfigurer::disable)
+        http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers("https://springboot3-stlukesapp.netlify.app/auth/**", "https://springboot3-stlukesapp.netlify.app/api/**").permitAll()
                                 .requestMatchers("/auth/**", "/api/**").permitAll()
                                 .requestMatchers("**").permitAll()
                                 .anyRequest().authenticated()
-                );
+                )
+                .addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class);
         return http.build();
+
     }
 }
