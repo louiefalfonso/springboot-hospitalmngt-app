@@ -54,7 +54,6 @@ public class SecurityConfiguration {
         AuthenticationEntryPoint authenticationEntryPoint = null;
 
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
