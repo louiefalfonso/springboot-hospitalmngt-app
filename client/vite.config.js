@@ -21,7 +21,7 @@ export default defineConfig({
         },
       },
       "/auth": {
-        target: import.meta.env.VITE_BASE_URI_DEV,
+        target: "import.meta.env.VITE_BASE_URI_DEV",
         changeOrigin: true,
         secure: false,
         cors: true,
