@@ -35,31 +35,12 @@ public class SecurityConfiguration {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of(
-                "https://springboot-hospitalmngt-app.onrender.com",
-                "https://springboot3-stlukesapp.netlify.app"
-        ));
-        configuration.setAllowedMethods(List.of(
-                "GET",
-                "POST",
-                "PUT",
-                "DELETE",
-                "OPTIONS",
-                "PATCH"
-        ));
-        configuration.setAllowedHeaders(List.of(
-                "Authorization",
-                "Content-Type",
-                "Accept",
-                "X-Requested-With",
-                "X-Custom-Header"
-        ));
-        configuration.setExposedHeaders(List.of(
-                "Access-Control-Allow-Credentials",
-                "X-Custom-Response-Header",
-                "Access-Control-Allow-Origin"
-        ));
+        configuration.setAllowedOrigins(List.of("*")); // allow all origins
+        configuration.setAllowedMethods(List.of("*")); // allow all methods
+        configuration.setAllowedHeaders(List.of("*")); // allow all headers
+        configuration.setExposedHeaders(List.of("*")); // expose all headers
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 
@@ -76,15 +57,15 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
+        http.addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                        .requestMatchers("/auth/**", "/api/**").permitAll()
-                        .requestMatchers("https://springboot-hospitalmngt-app.onrender.com", "https://springboot3-stlukesapp.netlify.app").permitAll()
+                        .requestMatchers("/auth/**").authenticated()
+                        .requestMatchers("/api/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
