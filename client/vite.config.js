@@ -14,10 +14,9 @@ const apiProxy = createProxyMiddleware({
   onProxyRes: (proxyRes) => {
     console.log("Proxy response:", proxyRes);
     proxyRes.headers["Access-Control-Allow-Origin"] = "*";
-    proxyRes.headers["Access-Control-Allow-Methods"] =
-      "GET, POST, PUT, DELETE, OPTIONS";
-    proxyRes.headers["Access-Control-Allow-Headers"] =
-      "Content-Type, Authorization";
+    proxyRes.headers["Access-Control-Allow-Methods"] ="GET, POST, PUT, DELETE, OPTIONS";
+    proxyRes.headers["Access-Control-Allow-Headers"] ="Content-Type, Authorization";
+        proxyRes.headers["Access-Control-Allow-Credentials"] = "true"; 
   },
 });
 
@@ -32,8 +31,16 @@ export default defineConfig({
       headers: ["Content-Type", "Authorization"],
     },
     proxy: {
-      "/api": apiProxy,
-      "/auth": apiProxy,
+      "/api": {
+        target: baseUriDev,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+      "/auth": {
+        target: baseUriDev,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/auth/, ""),
+      },
     },
   },
 });

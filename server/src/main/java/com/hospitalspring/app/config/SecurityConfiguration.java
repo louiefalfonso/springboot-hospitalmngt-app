@@ -74,7 +74,9 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
+        http.cors().configurationSource(corsConfigurationSource())
+                .and()
+                .addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
@@ -82,15 +84,7 @@ public class SecurityConfiguration {
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .headers().addHeaderWriter((request, response) -> {
-                    response.addHeader("Access-Control-Allow-Origin", "*");
-                    response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, PATCH");
-                    response.addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept, X-Requested-With, X-Custom-Header");
-                    response.addHeader("Access-Control-Expose-Headers", "Access-Control-Allow-Credentials, X-Custom-Response-Header, Access-Control-Allow-Origin");
-                    response.addHeader("Access-Control-Allow-Credentials", "true");
-                    response.addHeader("Access-Control-Max-Age", "3600");
-                });
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
