@@ -24,7 +24,6 @@ public class PatientController {
     private PatientService patientService;
 
     //POST New Patient REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PostMapping
     public ResponseEntity<PatientDto> createPatient (@RequestBody PatientDto patientDto){
         PatientDto savedPatient = patientService.createPatient(patientDto);
@@ -32,7 +31,6 @@ public class PatientController {
     }
 
     //GET patient By ID REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @GetMapping("{id}")
     public ResponseEntity<Patient> getPatientById(@PathVariable("id") long id){
         Patient patient = patientRepository.findAllById(id)
@@ -41,7 +39,6 @@ public class PatientController {
     }
 
     //GET All Patients REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @GetMapping
     public ResponseEntity<List<PatientDto>> getAllPatients(){
         List<PatientDto> patient = patientService.getAllPatients();
@@ -49,7 +46,6 @@ public class PatientController {
     }
 
     //UPDATE Patient REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PutMapping("{id}")
     public ResponseEntity<Patient> updatePatient(@PathVariable ("id") long id,
                                                  @RequestBody Patient patientDetails){
@@ -70,7 +66,6 @@ public class PatientController {
     }
 
     //DELETE Patient REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deletePatient(@PathVariable("id")Long patientId){
         patientService.deletePatient(patientId);

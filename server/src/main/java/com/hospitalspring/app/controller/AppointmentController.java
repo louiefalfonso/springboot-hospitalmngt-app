@@ -27,14 +27,12 @@ public class AppointmentController {
 
 
     //POST New Appointment REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PostMapping
     public ResponseEntity<AppointmentDto> createAppointment(@RequestBody AppointmentDto appointmentDto){
         AppointmentDto savedAppointment = appointmentService.createAppointment(appointmentDto);
         return new ResponseEntity<>(savedAppointment, HttpStatus.CREATED);
     }
     //GET All Appointment REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @GetMapping
     public  ResponseEntity<List<AppointmentDto>> getAllAppointments(){
         List<AppointmentDto> appointment = appointmentService.getAllAppointments();
@@ -42,7 +40,6 @@ public class AppointmentController {
     }
 
     //GET Appointment By Id REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @GetMapping("{id}")
     public ResponseEntity<AppointmentDto> getAppointmentById(@PathVariable("id") long id){
         Appointment appointment = appointmentRepository.findById(id)
@@ -53,7 +50,6 @@ public class AppointmentController {
 
 
     //DELETE Appointment REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteAppointment(@PathVariable("id")Long appointmentId){
         appointmentService.deleteAppointment(appointmentId);
@@ -61,7 +57,6 @@ public class AppointmentController {
     }
 
     //UPDATE Doctor REST API
-    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PutMapping("{id}")
     public ResponseEntity<AppointmentDto> updateAppoinment(@PathVariable ("id") long id,
                                                            @RequestBody Appointment appointmentDetails){
