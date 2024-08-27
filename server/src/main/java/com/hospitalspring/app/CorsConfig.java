@@ -16,13 +16,17 @@ public class CorsConfig {
                 registry.addMapping("/api/**")
                         .allowedOrigins("https://springboot3-stlukesapp.netlify.app",
                                 "https://springboot-hospitalmngt-app.onrender.com")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS","HEAD")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD")
+                        .allowedHeaders("*")
+                        .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers") // Add this line
                         .maxAge(3600);
 
                 registry.addMapping("/auth/**")
                         .allowedOrigins("https://springboot3-stlukesapp.netlify.app",
                                 "https://springboot-hospitalmngt-app.onrender.com")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS","HEAD")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD")
+                        .allowedHeaders("*")
+                        .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers") // Add this line
                         .maxAge(3600);
             }
         };
