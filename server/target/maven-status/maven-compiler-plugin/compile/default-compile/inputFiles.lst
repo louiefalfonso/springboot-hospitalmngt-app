@@ -1,8 +1,8 @@
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/HospitalappApplication.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/config/ApplicationConfiguration.java
-/Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/config/CorsConfig.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/config/JwtAuthenticationFilter.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/config/SecurityConfiguration.java
+/Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/config/WebConfig.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/controller/AppointmentController.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/controller/AuthenticationController.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/controller/DoctorController.java
