@@ -18,7 +18,6 @@ com/hospitalspring/app/mapper/DoctorMapper.class
 com/hospitalspring/app/entity/Doctor$DoctorBuilder.class
 com/hospitalspring/app/dtos/PatientDto.class
 com/hospitalspring/app/controller/AppointmentController.class
-com/hospitalspring/app/CorsConfig$1.class
 com/hospitalspring/app/service/AppointmentService.class
 com/hospitalspring/app/entity/Appointment.class
 com/hospitalspring/app/config/JwtAuthenticationFilter.class
