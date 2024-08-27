@@ -56,7 +56,8 @@ public class SecurityConfiguration {
         ));
         configuration.setExposedHeaders(List.of(
                 "Access-Control-Allow-Credentials",
-                "X-Custom-Response-Header"
+                "X-Custom-Response-Header",
+                "Access-Control-Allow-Origin"
         ));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
@@ -73,14 +74,14 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                                .requestMatchers("/auth/**", "/api/**").permitAll()
-                                .anyRequest().authenticated()
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                        .requestMatchers("/auth/**", "/api/**").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider)
+                .addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
