@@ -33,6 +33,7 @@ com/hospitalspring/app/exceptions/GlobalExceptionHandler.class
 com/hospitalspring/app/service/impl/AppointmentServiceImpl.class
 com/hospitalspring/app/config/SecurityConfiguration.class
 com/hospitalspring/app/controller/PatientController.class
+com/hospitalspring/app/HospitalappApplication$1.class
 com/hospitalspring/app/repository/PatientRepository.class
 com/hospitalspring/app/mapper/AppointmentMapper.class
 com/hospitalspring/app/controller/AuthenticationController.class
