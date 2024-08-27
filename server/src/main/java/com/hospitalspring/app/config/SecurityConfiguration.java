@@ -37,15 +37,14 @@ public class SecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*")); // allow all origins
+        configuration.setAllowedOrigins(List.of("https://springboot3-stlukesapp.netlify.app")); // allow only this origin
         configuration.setAllowedMethods(List.of("*")); // allow all methods
         configuration.setAllowedHeaders(List.of("*")); // allow all headers
         configuration.setExposedHeaders(List.of("*")); // expose all headers
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
-
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/auth/login", configuration); // register CORS configuration for this specific URL
         return source;
     }
 
@@ -53,7 +52,6 @@ public class SecurityConfiguration {
     public CorsFilter corsFilter() {
         return new CorsFilter(corsConfigurationSource());
     }
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
