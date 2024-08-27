@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RequestMapping("/auth")
 @RestController
-@CrossOrigin(origins = {"*"}, methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.POST}, allowCredentials = "true")
+@CrossOrigin
 public class AuthenticationController {
 
     private final JwtService jwtService;
