@@ -2,6 +2,8 @@ package com.hospitalspring.app.config;
 
 import com.hospitalspring.app.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,6 +18,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.IOException;
 
@@ -81,6 +85,26 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } catch (Exception exception) {
             handlerExceptionResolver.resolveException(request, response, null, exception);
+        }
+    }
+
+    @Configuration
+    public static class CorsConfig {
+
+        @Bean
+        public WebMvcConfigurer corsConfigurer() {
+            return new WebMvcConfigurer() {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/api/**")
+                            .allowedOrigins("https://springboot3-stlukesapp.netlify.app")
+                            .allowedMethods("GET");
+
+                    registry.addMapping("/auth/**")
+                            .allowedOrigins("https://springboot3-stlukesapp.netlify.app")
+                            .allowedMethods("GET");
+                }
+            };
         }
     }
 }

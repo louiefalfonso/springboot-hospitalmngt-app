@@ -1,4 +1,3 @@
-/Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/CorsConfig.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/HospitalappApplication.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/config/ApplicationConfiguration.java
 /Users/louiefrias/Documents/GitHub/springboot-hospitalmngt-app/server/src/main/java/com/hospitalspring/app/config/JwtAuthenticationFilter.java
