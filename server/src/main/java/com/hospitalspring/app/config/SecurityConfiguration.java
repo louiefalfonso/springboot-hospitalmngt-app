@@ -35,10 +35,29 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://springboot-hospitalmngt-app.onrender.com", "https://springboot3-stlukesapp.netlify.app"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE","OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
-        configuration.setExposedHeaders(List.of("Access-Control-Allow-Credentials"));
+        configuration.setAllowedOrigins(List.of(
+                "https://springboot-hospitalmngt-app.onrender.com",
+                "https://springboot3-stlukesapp.netlify.app"
+        ));
+        configuration.setAllowedMethods(List.of(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "OPTIONS",
+                "PATCH"
+        ));
+        configuration.setAllowedHeaders(List.of(
+                "Authorization",
+                "Content-Type",
+                "Accept",
+                "X-Requested-With",
+                "X-Custom-Header"
+        ));
+        configuration.setExposedHeaders(List.of(
+                "Access-Control-Allow-Credentials",
+                "X-Custom-Response-Header" // Add additional exposed header
+        ));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 
@@ -54,11 +73,10 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .addFilter(corsFilter())
+        http.addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                                .requestMatchers("https://springboot3-stlukesapp.netlify.app/auth/**", "https://springboot3-stlukesapp.netlify.app/api/**").permitAll()
                                 .requestMatchers("/auth/**", "/api/**").permitAll()
                                 .anyRequest().authenticated()
                 )
