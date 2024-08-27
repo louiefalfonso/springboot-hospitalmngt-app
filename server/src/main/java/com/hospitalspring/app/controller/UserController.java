@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"*"}, methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.POST})
+
 @RequestMapping("/users")
 @RestController
+@CrossOrigin(origins = {"*"}, methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.POST}, allowCredentials = "true")
 public class UserController {
 
     private final UserService userService;
@@ -20,6 +21,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @GetMapping("/me")
     public ResponseEntity<User> authenticatedUser() {
 
@@ -28,6 +30,7 @@ public class UserController {
         return ResponseEntity.ok(currentUser);
     }
 
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @GetMapping
     public ResponseEntity<List<User>> allUsers() {
         List<User> users = userService.allUsers();

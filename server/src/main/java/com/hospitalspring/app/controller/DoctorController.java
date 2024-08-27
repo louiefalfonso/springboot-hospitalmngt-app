@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin(origins = {"*"}, methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.POST})
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/doctors")
+@CrossOrigin(origins = {"*"}, methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.POST}, allowCredentials = "true")
 public class DoctorController {
 
     private DoctorService doctorService;
@@ -25,6 +26,7 @@ public class DoctorController {
     private DoctorRepository doctorRepository;
 
     //POST New Doctor REST API
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PostMapping
     public ResponseEntity<DoctorDto> createDoctor(@RequestBody DoctorDto doctorDto){
         DoctorDto savedDoctor = doctorService.createDoctor(doctorDto);
@@ -32,6 +34,7 @@ public class DoctorController {
     }
 
     //GET Doctor By ID REST API
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @GetMapping("{id}")
     public ResponseEntity<Doctor> getDoctorById(@PathVariable("id") long id){
         Doctor doctor = doctorRepository.findAllById(id)
@@ -41,6 +44,7 @@ public class DoctorController {
 
 
     //GET All Doctors REST API
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @GetMapping
     public ResponseEntity<List<DoctorDto>> getAllDoctors(){
         List<DoctorDto> doctor = doctorService.getAllDoctors();
@@ -48,6 +52,7 @@ public class DoctorController {
     }
 
     //UPDATE Doctor REST API
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PutMapping("{id}")
     public ResponseEntity<Doctor> updateDoctor(@PathVariable ("id")  long id,
                                                @RequestBody Doctor doctorDetails){
@@ -66,6 +71,7 @@ public class DoctorController {
     }
 
     //DELETE Doctor REST API
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteDoctor(@PathVariable("id")Long doctorId){
         doctorService.deleteDoctor(doctorId);

@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@CrossOrigin(origins = {"*"}, methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.POST})
+
 @RequestMapping("/auth")
 @RestController
+@CrossOrigin(origins = {"*"}, methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.POST}, allowCredentials = "true")
 public class AuthenticationController {
 
     private final JwtService jwtService;
@@ -27,6 +28,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PostMapping("/signup")
     public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
 
@@ -34,6 +36,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(registeredUser);
     }
 
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
 
@@ -44,6 +47,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(loginResponse);
     }
 
+    @CrossOrigin(origins = "https://springboot3-stlukesapp.netlify.app", allowedHeaders = {"Requestor-Type", "Authorization"}, exposedHeaders = "X-Get-Header")
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpServletRequest request, HttpServletResponse response) {
         Optional<Cookie> optionalCookie = getCookie(request, "jwt-token");
