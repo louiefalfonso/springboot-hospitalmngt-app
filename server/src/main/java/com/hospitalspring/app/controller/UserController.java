@@ -9,7 +9,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(
+        origins = {
+                "https://springboot-hospitalmngt-app.onrender.com",
+                "https://springboot3-stlukesapp.netlify.app"
+        },
+        methods = {
+                RequestMethod.OPTIONS,
+                RequestMethod.GET,
+                RequestMethod.PUT,
+                RequestMethod.DELETE,
+                RequestMethod.POST
+        })
 @RequestMapping("/users")
 @RestController
 public class UserController {

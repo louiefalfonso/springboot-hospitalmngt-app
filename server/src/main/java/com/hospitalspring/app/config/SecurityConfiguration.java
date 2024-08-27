@@ -56,7 +56,7 @@ public class SecurityConfiguration {
         ));
         configuration.setExposedHeaders(List.of(
                 "Access-Control-Allow-Credentials",
-                "X-Custom-Response-Header" // Add additional exposed header
+                "X-Custom-Response-Header"
         ));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
