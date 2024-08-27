@@ -14,15 +14,15 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("https://springboot3-stlukesapp.netlify.app/**",
-                                "https://springboot-hospitalmngt-app.onrender.com/**")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedOrigins("https://springboot3-stlukesapp.netlify.app",
+                                "https://springboot-hospitalmngt-app.onrender.com")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS","HEAD")
                         .maxAge(3600);
 
                 registry.addMapping("/auth/**")
-                        .allowedOrigins("https://springboot3-stlukesapp.netlify.app/**",
-                                "https://springboot-hospitalmngt-app.onrender.com/**")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedOrigins("https://springboot3-stlukesapp.netlify.app",
+                                "https://springboot-hospitalmngt-app.onrender.com")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS","HEAD")
                         .maxAge(3600);
             }
         };
