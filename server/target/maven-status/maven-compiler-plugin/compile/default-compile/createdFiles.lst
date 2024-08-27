@@ -2,7 +2,6 @@ com/hospitalspring/app/entity/Doctor.class
 com/hospitalspring/app/HospitalappApplication.class
 com/hospitalspring/app/service/impl/PatientServiceImpl.class
 com/hospitalspring/app/service/UserService.class
-com/hospitalspring/app/config/JwtAuthenticationFilter$CorsConfig.class
 com/hospitalspring/app/config/ApplicationConfiguration.class
 com/hospitalspring/app/service/DoctorService.class
 com/hospitalspring/app/entity/Appointment$AppointmentBuilder.class
@@ -21,7 +20,6 @@ com/hospitalspring/app/dtos/PatientDto.class
 com/hospitalspring/app/controller/AppointmentController.class
 com/hospitalspring/app/service/AppointmentService.class
 com/hospitalspring/app/entity/Appointment.class
-com/hospitalspring/app/config/JwtAuthenticationFilter$CorsConfig$1.class
 com/hospitalspring/app/config/JwtAuthenticationFilter.class
 com/hospitalspring/app/dtos/LoginUserDto.class
 com/hospitalspring/app/dtos/AppointmentDto.class
@@ -29,6 +27,7 @@ com/hospitalspring/app/responses/LoginResponse.class
 com/hospitalspring/app/repository/AppointmentRepository.class
 com/hospitalspring/app/controller/UserController.class
 com/hospitalspring/app/service/AuthenticationService.class
+com/hospitalspring/app/CorsConfig.class
 com/hospitalspring/app/exceptions/GlobalExceptionHandler.class
 com/hospitalspring/app/service/impl/AppointmentServiceImpl.class
 com/hospitalspring/app/config/SecurityConfiguration.class

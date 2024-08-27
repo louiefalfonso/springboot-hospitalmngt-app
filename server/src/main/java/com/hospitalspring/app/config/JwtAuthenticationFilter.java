@@ -88,23 +88,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
     }
 
-    @Configuration
-    public static class CorsConfig {
-
-        @Bean
-        public WebMvcConfigurer corsConfigurer() {
-            return new WebMvcConfigurer() {
-                @Override
-                public void addCorsMappings(CorsRegistry registry) {
-                    registry.addMapping("/api/**")
-                            .allowedOrigins("https://springboot3-stlukesapp.netlify.app")
-                            .allowedMethods("GET");
-
-                    registry.addMapping("/auth/**")
-                            .allowedOrigins("https://springboot3-stlukesapp.netlify.app")
-                            .allowedMethods("GET");
-                }
-            };
-        }
-    }
 }
