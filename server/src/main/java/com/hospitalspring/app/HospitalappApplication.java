@@ -22,31 +22,4 @@ public class HospitalappApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HospitalappApplication.class, args);
 	}
-
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/**")
-						.allowedOrigins("https://springboot3-stlukesapp.netlify.app",
-								"https://springboot-hospitalmngt-app.onrender.com")
-						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD")
-						.allowedHeaders("*")
-						.exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers") // Add this line
-						.maxAge(3600);
-
-				registry.addMapping("/auth/**")
-						.allowedOrigins("https://springboot3-stlukesapp.netlify.app",
-								"https://springboot-hospitalmngt-app.onrender.com")
-						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD")
-						.allowedHeaders("*")
-						.exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Methods", "Access-Control-Allow-Headers") // Add this line
-						.maxAge(3600);
-			}
-		};
-	}
-
-
-
 }
