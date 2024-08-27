@@ -10,18 +10,18 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*")
+                .allowedOrigins("https://springboot3-stlukesapp.netlify.app","https://springboot-hospitalmngt-app.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .maxAge(3600);
 
         registry.addMapping("/api/**")
-                .allowedOrigins("https://springboot3-stlukesapp.netlify.app")
+                .allowedOrigins("https://springboot3-stlukesapp.netlify.app","https://springboot-hospitalmngt-app.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("Authorization", "Content-Type");
 
         registry.addMapping("/auth/**")
-                .allowedOrigins("https://springboot3-stlukesapp.netlify.app")
+                .allowedOrigins("https://springboot3-stlukesapp.netlify.app","https://springboot-hospitalmngt-app.onrender.com")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("Authorization", "Content-Type");
     }
